@@ -21,7 +21,7 @@ window.servers = {
 					callback();
 					service.close();
 				}
-			},70)
+			},500)
 		};
 	},
 	readFile:function (name,callback) {
@@ -41,7 +41,7 @@ window.servers = {
 					callback();
 					service.close();
 				}
-			},70)
+			},500)
 		};
 	}
 };
