@@ -16,12 +16,6 @@ window.servers = {
 				callback();
 				service.close();
 			};
-			setTimeout(() => {
-				if (notfinished) {
-					callback();
-					service.close();
-				}
-			},500)
 		};
 	},
 	readFile:function (name,callback) {
