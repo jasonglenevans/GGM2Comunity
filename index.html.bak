@@ -27,6 +27,12 @@
 		background-color:#edf2ff;
 		font-family:Arial;
 	}
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+	}
 </style>
 </head>
 <body>
@@ -34,6 +40,7 @@
 <div id="main_menu">
 <img width=100 height=48 style="float:left;" src="./logo.png">
 <a href="editor/index.html"><p class="main_menu_item">Create</p></a>
+<a href="explore.html"><p class="main_menu_item">Explore</p></a>
 </div>
 <br></br>
 <center>
@@ -42,10 +49,26 @@
 <h4 id="views">We have _ Views.</h4>
 <h1>Sharing is easy, plus no signup!</h1>
 <p>All you need to do is copy and paste the url of your game and send it to somebody<br>(NOTICE:its possible to find your game, but when theres bigger numbers its harder to find)</p>
+<h1>Free For All!</h1>
+<p>
+Yep, You Dont Have To Use Money For This Website!
+</p>
+<h1>Comments</h1>
+<div class="commentsbox">
+<p id="comments">
+
+</p>
+</div>
+<input type="text" id="comment">
+<button id="submitComment">Submit</button>
+<hr>
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
 
 </center>
 <script src="servers.js?n=1"></script>
 <script>
+//view counter
 /*servers.saveFile("test.txt","test",function () {
 	console.log("saved")
 });*/
@@ -55,7 +78,30 @@ servers.readFile("views-ggm-community.txt",function (data) {
 		document.getElementById("views").innerHTML = "We have " + Number(data) + " Views.";
 	});
 });
+//comments
+document.getElementById("submitComment").innerHTML = "Submit";
 
+function loadComments() {
+	servers.readFile("ggm-comments.txt",function (data) {
+		var splitedText = data.split("\n");
+		document.getElementById("comments").innerHTML = splitedText.join("<br>");
+	});
+}
+function postComment() {
+	document.getElementById("submitComment").innerHTML = "Submiting...";
+	servers.readFile("ggm-comments.txt",function (data) {
+		if (true) {
+			var splitedText = data.split("\n");
+			splitedText.push(document.getElementById("comment").value);
+			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";});
+			loadComments();
+		} else {
+			document.getElementById("submitComment").innerHTML="Submit";
+		}
+	});
+}
+loadComments();
+document.getElementById("submitComment").onclick = postComment;
 </script>
 
 </body>
