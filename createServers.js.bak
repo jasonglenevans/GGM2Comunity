@@ -36,4 +36,4 @@ function saveOnline() {
 		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText
 	});
 }
-setInterval(saveOnline,7000)
+setInterval(saveOnline,5000)
