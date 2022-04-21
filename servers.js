@@ -38,12 +38,12 @@ window.servers = {
 					callback(JSON.parse(data.data).data);
 				}
 			};
-			setTimeout(() => {
+			/*setTimeout(() => {
 				if (notfinished) {
 					callback();
 					service.close();
 				}
-			},1555)
+			},1555)*/
 		};
 	}
 };
