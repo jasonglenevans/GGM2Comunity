@@ -11,21 +11,23 @@ setTimeout(() => {
 		gui.jsonTextToEditor(data);
 		document.getElementById("loadingscreen").hidden = true
 	});
-},30)
+},50)
 } else {
+setTimeout(() => {
 servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 	projectId = Number(data)+1
 	document.getElementById("loadingscreen").hidden = false
 	servers.saveFile("ggm-community-accountid-latest-id.txt",projectId,function () {
 		console.log("saved new id.");
 		document.getElementById("loadingscreen").hidden = false
-		servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.jsonTextToEditor(data),function () {
+		servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
 			console.log("saved new project data.");
 			window.location.replace(window.location.href+"?id="+projectId);
 			document.getElementById("loadingscreen").hidden = true
 		});
 	});
 });
+},30)
 }
 function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."

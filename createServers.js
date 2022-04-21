@@ -11,8 +11,9 @@ setTimeout(() => {
 		gui.jsonTextToEditor(data);
 		document.getElementById("loadingscreen").hidden = true
 	});
-},30)
+},50)
 } else {
+setTimeout(() => {
 servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 	projectId = Number(data)+1
 	document.getElementById("loadingscreen").hidden = false
@@ -26,6 +27,7 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 		});
 	});
 });
+},37)
 }
 function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
