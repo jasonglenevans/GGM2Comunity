@@ -27,7 +27,7 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 		});
 	});
 });
-},30)
+},37)
 }
 function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
@@ -36,3 +36,4 @@ function saveOnline() {
 		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText
 	});
 }
+setInterval(saveOnline,7000)
