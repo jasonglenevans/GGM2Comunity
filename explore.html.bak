@@ -34,6 +34,8 @@
 		background-color:#0085b5;
 		border-left-style:solid;
 		border-left-color:blue;
+		color:white;
+		font-weight:bold;
 	}
 	.project:hover {
 		background-color:#24b8ed;
@@ -52,8 +54,8 @@
 <center>
 
 <h1>Explore</h1>
-<label for="seartch">Find:</label>
-<input type="text" id="seartch">
+<!--<label for="seartch">Find:</label>
+<input type="text" id="seartch">-->
 <hr>
 <div id="explore"></div>
 <p id="loading">Loading projects...</p>
@@ -88,9 +90,6 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 	maxCount = Number(data);
 	getProject()
 });
-document.getElementById("seartch").onchange = function () {
-	
-}
 </script>
 
 </body>

@@ -34,6 +34,8 @@
 		background-color:#0085b5;
 		border-left-style:solid;
 		border-left-color:blue;
+		color:white;
+		font-weight:bold;
 	}
 	.project:hover {
 		background-color:#24b8ed;
@@ -66,15 +68,17 @@ function getProject() {
 	servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
 		try{
 			var json = JSON.parse(data)
-			var b = document.createElement("button");
-			var a = document.createElement("a");
-			a.href = "editor/index.html?id="+idCounter;
-			a.appendChild(b);
-			document.getElementById("explore").appendChild(a);
-			b.innerHTML = ""+json.title+"";
-			b.setAttribute("class","project");
-			b.setAttribute("id",idCounter);
-			document.getElementById("explore").innerHTML += "<br><br>";
+			if (json.title) {
+				var b = document.createElement("button");
+				var a = document.createElement("a");
+				a.href = "editor/index.html?id="+idCounter;
+				a.appendChild(b);
+				document.getElementById("explore").appendChild(a);
+				b.innerHTML = ""+json.title+"";
+				b.setAttribute("class","project");
+				b.setAttribute("id",idCounter);
+				document.getElementById("explore").innerHTML += "<br><br>";
+			}
 		}catch(e){}
 		if (idCounter < maxCount) {
 			idCounter += 1

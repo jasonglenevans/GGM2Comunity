@@ -35,7 +35,7 @@ window.servers = {
 					callback();
 					service.close();
 				}
-			},800)
+			},1555)
 		};
 	}
 };
