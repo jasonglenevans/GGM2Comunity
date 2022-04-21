@@ -13,7 +13,11 @@ window.servers = {
 			}));
 			service.onmessage = function (data) {
 				notfinished = false
-				callback();
+				if (JSON.parse(data.data).error) {
+					callback();
+				} else {
+					callback();
+				}
 				service.close();
 			};
 		};
@@ -28,7 +32,11 @@ window.servers = {
 			}));
 			service.onmessage = function (data) {
 				notfinished = false
-				callback(JSON.parse(data.data).data);
+				if (JSON.parse(data.data).error) {
+					callback();
+				} else {
+					callback(JSON.parse(data.data).data);
+				}
 			};
 			setTimeout(() => {
 				if (notfinished) {

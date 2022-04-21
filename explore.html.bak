@@ -29,19 +29,20 @@
 	}
 	.project {
 		border:none;
-		width:100%;
-		height:40px;
 		background-color:#0085b5;
-		border-left-style:solid;
-		border-left-color:blue;
+		/*border-left-style:solid;
+		border-left-color:blue;*/
 		color:white;
 		font-weight:bold;
+		margin-right:30px;
+		border-radius:8px;
 	}
 	.project:hover {
 		background-color:#24b8ed;
 		cursor:pointer;
 	}
 </style>
+<link rel="icon" href="favicon.png">
 </head>
 <body>
 
@@ -59,12 +60,18 @@
 <hr>
 <div id="explore"></div>
 <p id="loading">Loading projects...</p>
+<hr>
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
 </center>
 <script src="servers.js?n=1"></script>
 <script>
 var idCounter = 0
 var maxCount = 0
 function getProject() {
+	if (idCounter < 1) {
+		document.getElementById("explore").innerHTML = "";
+	}
 	servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
 		try{
 			var json = JSON.parse(data)
@@ -74,10 +81,13 @@ function getProject() {
 				a.href = "editor/index.html?id="+idCounter;
 				a.appendChild(b);
 				document.getElementById("explore").appendChild(a);
-				b.innerHTML = ""+json.title+"";
+				if (json.thumb) {
+					b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=120 height=80>  ";
+				} else {
+					b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
+				}
 				b.setAttribute("class","project");
 				b.setAttribute("id",idCounter);
-				document.getElementById("explore").innerHTML += "<br><br>";
 			}
 		}catch(e){}
 		if (idCounter < maxCount) {

@@ -17,7 +17,8 @@ window.gui = {
 		return JSON.stringify({
 			blocklyXML:Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)),
 			files:fileResourcesArray,
-			title:document.getElementById("gameTitle").value
+			title:document.getElementById("gameTitle").value,
+			thumb:document.getElementById("gameScreen").toDataURL()
 		});
 	},
 	jsonTextToEditor:function (JsonText) {

@@ -232,7 +232,7 @@ var dialogOptions = {
 	}
 };
 var app = document.getElementById("app");
-dialogBackground.style.display = "block";
+dialogBackground.style.display = "none";
 Blockly.alert = (function(message, callback) {
 	dialogBackground.style.display = "block";
 	

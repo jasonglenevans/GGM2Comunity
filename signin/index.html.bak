@@ -28,6 +28,7 @@
 		font-family:Arial;
 	}
 </style>
+<link rel="icon" href="editor/favicon.png">
 </head>
 <body>
 
@@ -42,19 +43,37 @@
 <input type="text" id="username"><br><br><br><br>
 <label for="password">Password:</label>
 <input type="text" id="password"><br><br>
-<button onclick="signin();">Done.</button>
+<button onclick="">New account</button>
+<button onclick="">Sign in</button>
 
 
 </center>
 <script src="../servers.js?n=1"></script>
 <script>
 function signin() {
-	servers.saveFile("views-ggm-community-user-"+,Number(data)+1,function () {
-		console.log("saved views.");
-		document.getElementById("views").innerHTML = "We have " + Number(data) + " Views.";
+	
+}
+function newacc() {
+	servers.readFile("views-ggm-community-accountid-counter.txt",function (d) {
+		servers.saveFile("views-ggm-community-accountid-counter.txt",Number(d)+1,function () {
+			console.log("saved id.");
+			var 
+			servers.saveFile("views-ggm-community-user-"+,Number(data)+1,function () {
+				console.log("saved .");
+				document.getElementById("views").innerHTML = "We have " + Number(data) + " Views.";
+			});
+		});
+	});
+	servers.readFile("views-ggm-community-accountdata",function (d) {
+		var dataInJson = JSON.parse(d)
+		dataInJson.accounts.push({
+			
+		})
+		servers.saveFile("views-ggm-community-accountdata",JSON.parse(d),function () {
+			
+		});
 	});
 }
-
 </script>
 </body>
 </html>

@@ -34,6 +34,7 @@
 		background-color:white;
 	}
 </style>
+
 </head>
 <body>
 
@@ -93,8 +94,7 @@ function postComment() {
 		if (true) {
 			var splitedText = data.split("\n");
 			splitedText.push(document.getElementById("comment").value);
-			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";});
-			loadComments();
+			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";loadComments();});
 		} else {
 			document.getElementById("submitComment").innerHTML="Submit";
 		}

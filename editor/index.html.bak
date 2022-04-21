@@ -78,8 +78,7 @@
 			</center>
 		</div>
 		<div id="main_menu">
-			
-			<img width=100 height=48 style="float:left;" src="ggm-gui/logo.png">
+			<a href="../index.html"><img width=100 height=48 style="float:left;" src="ggm-gui/logo.png"></a>
 			<p class="main_menu_item" onclick="workspace.clear();clearResources();">New</p>
 			<p class="main_menu_item" onclick="save()">Save</p>
 			<p class="main_menu_item" onclick="load()">Load</p>
@@ -161,15 +160,15 @@
 		<div id="dialogBackground" style=""></div>-->
 		<img src="favicon.png" hidden id="testImage">
 		<input hidden type="file" id="gameFileUpload" accept=".ggm2g">
-		<script src="blockly/blockly_compressed.js"></script>
-		<script src="blockly/msg/js/en.js"></script>
-		<script src="blockly/blocks_compressed.js"></script>
-		<script src="blockly/javascript_compressed.js"></script>
-		<script src="ggm-vm/index.js"></script>
-		<script src="ggm-vm/renderer.js"></script>
-		<script src="ggm-vm/audio.js"></script>
-		<script src="ggm-gui/theme.js"></script>
-		<script src="ggm-gui/index.js"></script>
+		<script src="blockly/blockly_compressed.js?n=1"></script>
+		<script src="blockly/msg/js/en.js?n=1"></script>
+		<script src="blockly/blocks_compressed.js?n=1"></script>
+		<script src="blockly/javascript_compressed.js?n=1"></script>
+		<script src="ggm-vm/index.js?n=1"></script>
+		<script src="ggm-vm/renderer.js?n=1"></script>
+		<script src="ggm-vm/audio.js?n=1"></script>
+		<script src="ggm-gui/theme.js?n=1"></script>
+		<script src="ggm-gui/index.js?n=1"></script>
 		<!--The Upload Scripts-->
 		<script src="../servers.js"></script>
 		<script src="../createServers.js"></script>
