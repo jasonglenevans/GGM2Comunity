@@ -2,7 +2,7 @@ window.shared = false;
 window.gui = {
 	loadScript: function (src,callback) {
 		var tmpscript = document.createElement("script");
-		tmpscript.src = window.getDirectory().gui + "/" + src;
+		tmpscript.src = window.getDirectory().gui + "/" + src + "?n=1";
 		document.body.appendChild(tmpscript);
 		tmpscript.onload = callback;
 		return tmpscript;

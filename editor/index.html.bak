@@ -86,7 +86,7 @@
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<input type="text" id="gameTitle" title="Your Games Title Goes Here" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
-			<button class="share" onclick="share();" id="share">Share</button>
+			<button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<p class="main_menu_item" onclick="saveOnline();" id="saveOnlineButton">Save Online</p>
 			<p class="main_menu_item" onclick="reportButton();" id="report">Report</p>
 		</div>

@@ -34,6 +34,9 @@ window.gui = {
 		workspace.clear();
 		document.getElementById("gameTitle").value = JsonTextParsed.title
 		Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(JsonTextParsed.blocklyXML),workspace);
+		if (JsonTextParsed.shared) {
+			window.shared = JsonTextParsed.shared;
+		}
 	}
 }
 console.log("[gui]:starting up.");
