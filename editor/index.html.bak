@@ -87,6 +87,7 @@
 			<input type="text" id="gameTitle" title="Your Games Title Goes Here" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<p class="main_menu_item" onclick="saveOnline();" id="saveOnlineButton">Save Online</p>
+			<p class="main_menu_item" onclick="reportButton();" id="report">Report</p>
 		</div>
 		<div id="blocklyArea">
 			
@@ -170,7 +171,7 @@
 		<script src="ggm-gui/theme.js?n=1"></script>
 		<script src="ggm-gui/index.js?n=1"></script>
 		<!--The Upload Scripts-->
-		<script src="../servers.js"></script>
-		<script src="../createServers.js"></script>
+		<script src="../servers.js?n=1"></script>
+		<script src="../createServers.js?n=1"></script>
 	</body>
 </html>

@@ -8,8 +8,12 @@ projectId = id
 setTimeout(() => {
 	document.getElementById("loadingscreen").hidden = false
 	servers.readFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",function (data) {
-		gui.jsonTextToEditor(data);
-		document.getElementById("loadingscreen").hidden = true
+		if (data == "REPORTED") {
+			document.getElementById("LOADINGSCREENTEXT").innerHTML = "Sorry,But This Project Was Removed.";
+		} else {
+			gui.jsonTextToEditor(data);
+			document.getElementById("loadingscreen").hidden = true
+		}
 	});
 },50)
 } else {
@@ -34,5 +38,12 @@ function saveOnline() {
 	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
 		console.log("saved new project data.");
 		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText
+	});
+}
+function reportButton() {
+	document.getElementById("report").innerHTML = "Reporting..."
+	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver","REPORTED",function () {
+		document.getElementById("report").innerHTML = "Report";
+		window.location.reload();
 	});
 }
