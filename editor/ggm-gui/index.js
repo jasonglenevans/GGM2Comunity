@@ -20,7 +20,8 @@ window.gui = {
 			files:fileResourcesArray,
 			title:document.getElementById("gameTitle").value,
 			thumb:document.getElementById("gameScreen").toDataURL(),
-			shared:window.shared
+			shared:window.shared,
+			dis:document.getElementById("discription").value
 		});
 	},
 	jsonTextToEditor:function (JsonText) {
@@ -37,6 +38,7 @@ window.gui = {
 		if (JsonTextParsed.shared) {
 			window.shared = JsonTextParsed.shared;
 		}
+		document.getElementById("discription").value = JsonTextParsed.dis;
 	}
 }
 console.log("[gui]:starting up.");

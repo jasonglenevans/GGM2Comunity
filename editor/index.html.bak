@@ -63,6 +63,7 @@
 			<block type="gvbvdxx_control_if_then_else"></block>
 			<block type="gvbvdxx_control_while"></block>
 			<block type="gvbvdxx_control_repeat"></block>
+			<block type="gvbvdxx_control_wait"></block>
 		</category>
 		<category colour="#f76707" name="Files">
 			<block type="gvbvdxx_files_dataurl"></block>
@@ -145,6 +146,40 @@
 					<button class="tbButton" id="dialogButtonOk">ok</button>
 					<button class="tbButton" id="dialogButtonCancel">cancel</button>
 				</center>
+			</div>
+		</div>
+		<div id="projectDetails">
+			<div style="
+				top:50%;
+				left:50%;
+				position:absolute;
+				width:600px;
+				height:400px;
+				margin-left:-300px;
+				margin-top:-200px;
+				background-color:white;
+				z-index:1000;
+				border-radius:8px;
+				overflow-y:scroll;
+				overflow-x:none;
+			">
+				<center>
+					<h1>More Project Details</h1>
+					<button class="buttonBlue" onclick="document.getElementById('projectDetails').hidden = true;">Close</button>
+					<h3>Discription:</h3>
+					<textarea id="discription" style="width:488px;height:577px;resize:none;">Put Notes And Credits Here</textarea>
+				</center>
+			</div>
+			<div style="
+				top:0;
+				left:0;
+				position:absolute;
+				width:100%;
+				height:100vh;
+				background-color:black;
+				opacity:0.5;
+			">
+				
 			</div>
 		</div>
 		<!--<div id="dialogBox">

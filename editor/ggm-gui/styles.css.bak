@@ -31,7 +31,7 @@ html {
 .loadingscreen_text {
 	color:#ffffff;
 }
-.share {
+.menuButtonOrange {
 	color:white;
 	border-radius:8px;
 	width:auto;
@@ -43,8 +43,23 @@ html {
 	margin-left:15px;
 	background-color:#ff9100;
 }
-.share:hover {
+.menuButtonOrange:hover {
 	background-color:#e68300;
+	cursor:pointer;
+}
+.buttonBule {
+	color:white;
+	border-radius:8px;
+	width:auto;
+	height:35px;
+	border:none;
+	font-weight:bold;
+	margin-top:7px;
+	margin-left:15px;
+	background-color:#0095ff;
+}
+.menuButtonOrange:hover {
+	background-color:#0076c9;
 	cursor:pointer;
 }
 .loadingscreen_center_text {

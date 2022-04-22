@@ -32,7 +32,11 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 		});
 	});
 });
-},37)
+},37);
+setInterval(function (){
+	document.getElementById("LOADINGSCREENTEXT").innerHTML = "Making New Project...";
+	document.getElementById("loadingscreen").hidden = false;
+},1);
 }
 function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."

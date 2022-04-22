@@ -47,6 +47,21 @@ html {
 	background-color:#e68300;
 	cursor:pointer;
 }
+.buttonBlue {
+	color:white;
+	border-radius:8px;
+	width:auto;
+	height:35px;
+	border:none;
+	font-weight:bold;
+	margin-top:7px;
+	margin-left:15px;
+	background-color:#0095ff;
+}
+.buttonBlue:hover {
+	background-color:#0076c9;
+	cursor:pointer;
+}
 .loadingscreen_center_text {
 	margin-top:350px;
 }
