@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="icon" href="favicon.png?n=1">
-		<link rel="stylesheet" href="ggm-gui/styles.css">
+		<link rel="stylesheet" href="ggm-gui/styles.css?n=1">
 		<title>Gvbvdxx Game Maker 2 Editor</title>
 	</head>
 	<body>
