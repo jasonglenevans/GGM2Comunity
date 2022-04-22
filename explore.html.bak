@@ -105,6 +105,7 @@ function serverLoad() {
 	});
 }
 servers.wsobject.onopen = serverLoad;
+
 </script>
 
 </body>

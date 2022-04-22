@@ -31,6 +31,22 @@ html {
 .loadingscreen_text {
 	color:#ffffff;
 }
+.menuButtonOrange {
+	color:white;
+	border-radius:8px;
+	width:auto;
+	height:35px;
+	border:none;
+	font-weight:bold;
+	float:left;
+	margin-top:7px;
+	margin-left:15px;
+	background-color:#ff9100;
+}
+.menuButtonOrange:hover {
+	background-color:#e68300;
+	cursor:pointer;
+}
 .loadingscreen_center_text {
 	margin-top:350px;
 }

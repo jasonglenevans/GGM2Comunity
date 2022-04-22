@@ -37,7 +37,8 @@ function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
 	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
 		console.log("saved new project data.");
-		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText
+		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText;
+		updateShareText();
 	});
 }
 function reportButton() {
@@ -47,3 +48,21 @@ function reportButton() {
 		window.location.reload();
 	});
 }
+var sharebutton = document.getElementById("share");
+function updateShareText() {
+	if (window.shared) {
+		sharebutton.innerHTML = "Unshare";
+	} else {
+		sharebutton.innerHTML = "Share";
+	}
+}
+function share() {
+	if (window.shared) {
+		window.shared = false;
+	} else {
+		window.shared = true;
+	}
+	updateShareText();
+	saveOnline();
+}
+updateShareText();

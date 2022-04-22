@@ -1,3 +1,4 @@
+window.shared = false;
 window.gui = {
 	loadScript: function (src,callback) {
 		var tmpscript = document.createElement("script");
@@ -17,7 +18,9 @@ window.gui = {
 		return JSON.stringify({
 			blocklyXML:Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)),
 			files:fileResourcesArray,
-			title:document.getElementById("gameTitle").value
+			title:document.getElementById("gameTitle").value,
+			thumb:document.getElementById("gameScreen").toDataURL(),
+			shared:window.shared
 		});
 	},
 	jsonTextToEditor:function (JsonText) {

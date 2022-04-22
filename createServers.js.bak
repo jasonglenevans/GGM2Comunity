@@ -9,7 +9,7 @@ setTimeout(() => {
 	document.getElementById("loadingscreen").hidden = false
 	servers.readFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",function (data) {
 		if (data == "REPORTED") {
-			document.getElementById("LOADINGSCREENTEXT").innerHTML = "Project Removed.";
+			document.getElementById("LOADINGSCREENTEXT").innerHTML = "Sorry,But This Project Was Removed.";
 		} else {
 			gui.jsonTextToEditor(data);
 			document.getElementById("loadingscreen").hidden = true
@@ -47,3 +47,20 @@ function reportButton() {
 		window.location.reload();
 	});
 }
+var sharebutton = document.getElementById("share");
+function updateShareText() {
+	if (window.shared) {
+		sharebutton.innerHTML = "Unshare";
+	} else {
+		sharebutton.innerHTML = "Share";
+	}
+}
+function share() {
+	if (window.shared) {
+		window.shared = false;
+	} else {
+		window.shared = true;
+	}
+	updateShareText()
+}
+updateShareText();

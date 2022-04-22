@@ -1,3 +1,4 @@
+window.shared = false;
 window.gui = {
 	loadScript: function (src,callback) {
 		var tmpscript = document.createElement("script");
@@ -18,7 +19,8 @@ window.gui = {
 			blocklyXML:Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)),
 			files:fileResourcesArray,
 			title:document.getElementById("gameTitle").value,
-			thumb:document.getElementById("gameScreen").toDataURL()
+			thumb:document.getElementById("gameScreen").toDataURL(),
+			shared:window.shared
 		});
 	},
 	jsonTextToEditor:function (JsonText) {
@@ -32,6 +34,9 @@ window.gui = {
 		workspace.clear();
 		document.getElementById("gameTitle").value = JsonTextParsed.title
 		Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(JsonTextParsed.blocklyXML),workspace);
+		if (JsonTextParsed.shared) {
+			window.shared = JsonTextParsed.shared;
+		}
 	}
 }
 console.log("[gui]:starting up.");
