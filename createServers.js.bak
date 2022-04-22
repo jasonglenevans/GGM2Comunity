@@ -37,7 +37,8 @@ function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
 	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
 		console.log("saved new project data.");
-		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText
+		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText;
+		updateShareText();
 	});
 }
 function reportButton() {
@@ -61,6 +62,7 @@ function share() {
 	} else {
 		window.shared = true;
 	}
-	updateShareText()
+	updateShareText();
+	saveOnline();
 }
 updateShareText();

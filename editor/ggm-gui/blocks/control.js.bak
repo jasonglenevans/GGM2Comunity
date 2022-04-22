@@ -113,6 +113,33 @@ Blockly.defineBlocksWithJsonArray([
   "colour": BlockColors["control"],
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_control_wait",
+  "message0": "Wait %1 %2 Seconds Then %3 %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "secs",
+      "check": "Number"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "after"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["control"],
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);
 Blockly.JavaScript['gvbvdxx_control_if_then'] = function(block) {
@@ -143,6 +170,9 @@ Blockly.JavaScript['gvbvdxx_control_if_then_else'] = function(block) {
 Blockly.JavaScript['gvbvdxx_control_while'] = function(block) {
   var value_statement = Blockly.JavaScript.valueToCode(block, 'statement', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_while = Blockly.JavaScript.statementToCode(block, 'while');
+  if (value_statement == "") {
+	  value_statement = "(false)";
+  }
   // TODO: Assemble JavaScript into code variable.
   var code = 'var CRASHCHECK = 0;\nwhile '+value_statement+' {\n'+statements_while+'\nCRASHCHECK += 1;\nif (CRASHCHECK > 1000) {\n  break;\n};\n}';
   return code;
@@ -151,9 +181,17 @@ Blockly.JavaScript['gvbvdxx_control_repeat'] = function(block) {
   var value_statement = Blockly.JavaScript.valueToCode(block, 'statement', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_while = Blockly.JavaScript.statementToCode(block, 'while');
   if (value_statement == "") {
-	  value_statement = "(false)";
+	  value_statement = "0";
   }
   // TODO: Assemble JavaScript into code variable.
   var code = 'var RepeatCount = 0;\nwhile(RepeatCount < '+value_statement+') {\nRepeatCount += 1;\n'+statements_while+'\n}\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_control_wait'] = function(block) {
+  var value_secs = Blockly.JavaScript.valueToCode(block, 'secs', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_after = Blockly.JavaScript.statementToCode(block, 'after');
+  var calcTime = 0;
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'setTimeout(() => {\n'+statements_after+'\n},'+value_secs+'*1000/*Calculate The Seconds*/);\n';
   return code;
 };

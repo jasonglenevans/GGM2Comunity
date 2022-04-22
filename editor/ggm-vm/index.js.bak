@@ -107,6 +107,13 @@ window.vm = {
 				} else {
 					return false;
 				}
+			},
+			wait:function (secs,callback) {
+				setTimeout(() => {
+					if (window.vm.control.running) {
+						callback();
+					}
+				},secs);
 			}
 		}
 	},
@@ -163,8 +170,8 @@ vm.___CHECKCOLLIDE = function isCollide(a, b) {
 	var result = !(
         ((a.y + a.height) < (b.y)) ||
         (a.y > (b.y + b.height)) ||
-        ((a.x + a.width) < b.x) ||
-        (a.x > (b.x + b.width))
+        (((a.x*2) + a.width) < (b.x*2)) ||
+        ((2*a.x) > ((b.x*2) + b.width))
     );
     return result;
 };

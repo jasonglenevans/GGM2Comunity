@@ -113,6 +113,33 @@ Blockly.defineBlocksWithJsonArray([
   "colour": BlockColors["control"],
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_control_wait",
+  "message0": "Wait %1 %2 Seconds Then %3 %4",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "secs",
+      "check": "Number"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "after"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["control"],
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);
 Blockly.JavaScript['gvbvdxx_control_if_then'] = function(block) {
@@ -158,5 +185,13 @@ Blockly.JavaScript['gvbvdxx_control_repeat'] = function(block) {
   }
   // TODO: Assemble JavaScript into code variable.
   var code = 'var RepeatCount = 0;\nwhile(RepeatCount < '+value_statement+') {\nRepeatCount += 1;\n'+statements_while+'\n}\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_control_wait'] = function(block) {
+  var value_secs = Blockly.JavaScript.valueToCode(block, 'secs', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_after = Blockly.JavaScript.statementToCode(block, 'after');
+  var calcTime = 0;
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'vm.project.block.wait('+value_secs+',() => {\n'+statements_after+'\n});\n';
   return code;
 };

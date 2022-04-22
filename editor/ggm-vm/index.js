@@ -107,6 +107,13 @@ window.vm = {
 				} else {
 					return false;
 				}
+			},
+			wait:function (secs,callback) {
+				setTimeout(() => {
+					if (window.vm.control.running) {
+						callback();
+					}
+				},secs*1000); /*1000ms = 1 second*/
 			}
 		}
 	},
