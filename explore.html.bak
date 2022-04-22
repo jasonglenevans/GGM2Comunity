@@ -82,7 +82,7 @@ function getProject() {
 				a.appendChild(b);
 				document.getElementById("explore").appendChild(a);
 				if (json.thumb) {
-					b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=120 height=80>  ";
+					b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=160 height=100>  ";
 				} else {
 					b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
 				}

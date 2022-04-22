@@ -2,6 +2,7 @@ window.serverId = "spectacular-brave-artichoke"
 
 window.servers = {
 	wss:"wss://"+window.serverId+".glitch.me",
+	wsobject:new WebSocket("wss://"+window.serverId+".glitch.me"),
 	saveFile:function (name,contents,callback) {
 		var service = new WebSocket(this.wss);
 		service.onopen = function () {
@@ -38,12 +39,30 @@ window.servers = {
 					callback(JSON.parse(data.data).data);
 				}
 			};
-			/*setTimeout(() => {
+			setTimeout(() => {
 				if (notfinished) {
 					callback();
 					service.close();
 				}
-			},1555)*/
+			},1555)
+		};
+	},
+	readFileFast:function (name,callback) {
+		var notfinished = true
+		this.wsobject.send(JSON.stringify({
+			"command":"getfile",
+			"file":"./"+name
+		}));
+		this.wsobject.onmessage = function (data) {
+			notfinished = false
+			if (JSON.parse(data.data).error) {
+				callback();
+			} else {
+				callback(JSON.parse(data.data).data);
+			}
 		};
 	}
+};
+window.servers.wsobject.onclose = function () {
+	window.servers.wsobject = new WebSocket("wss://"+window.serverId+".glitch.me");
 };

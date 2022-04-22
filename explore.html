@@ -66,42 +66,45 @@
 </center>
 <script src="servers.js?n=1"></script>
 <script>
-var idCounter = 0
-var maxCount = 0
-function getProject() {
-	if (idCounter < 1) {
-		document.getElementById("explore").innerHTML = "";
-	}
-	servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
-		try{
-			var json = JSON.parse(data)
-			if (json.title) {
-				var b = document.createElement("button");
-				var a = document.createElement("a");
-				a.href = "editor/index.html?id="+idCounter;
-				a.appendChild(b);
-				document.getElementById("explore").appendChild(a);
-				if (json.thumb) {
-					b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=160 height=100>  ";
-				} else {
-					b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
-				}
-				b.setAttribute("class","project");
-				b.setAttribute("id",idCounter);
-			}
-		}catch(e){}
-		if (idCounter < maxCount) {
-			idCounter += 1
-			getProject()
-		} else {
-			document.getElementById("loading").hidden = true;
+function serverLoad() {
+	var idCounter = 0
+	var maxCount = 0
+	function getProject() {
+		if (idCounter < 1) {
+			document.getElementById("explore").innerHTML = "";
 		}
+		servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
+			try{
+				var json = JSON.parse(data)
+				if (json.title) {
+					var b = document.createElement("button");
+					var a = document.createElement("a");
+					a.href = "editor/index.html?id="+idCounter;
+					a.appendChild(b);
+					document.getElementById("explore").appendChild(a);
+					if (json.thumb) {
+						b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=160 height=100>  ";
+					} else {
+						b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
+					}
+					b.setAttribute("class","project");
+					b.setAttribute("id",idCounter);
+				}
+			}catch(e){}
+			if (idCounter < maxCount) {
+				idCounter += 1
+				getProject()
+			} else {
+				document.getElementById("loading").hidden = true;
+			}
+		});
+	}
+	servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
+		maxCount = Number(data);
+		getProject()
 	});
 }
-servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
-	maxCount = Number(data);
-	getProject()
-});
+servers.wsobject.onopen = serverLoad;
 </script>
 
 </body>
