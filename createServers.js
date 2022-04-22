@@ -12,6 +12,7 @@ setTimeout(() => {
 			document.getElementById("LOADINGSCREENTEXT").innerHTML = "Sorry,But This Project Was Removed.";
 		} else {
 			gui.jsonTextToEditor(data);
+			updateShareText();
 			document.getElementById("loadingscreen").hidden = true
 		}
 	});
