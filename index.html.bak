@@ -50,19 +50,16 @@
 <center>
 
 <h1>Community</h1>
+<div id="devMessage"></div>
 <h4 id="views">We have _ Views.</h4>
 <h1>Sharing is easy, plus no signup!</h1>
-<p>All you need to do is copy and paste the url of your game and send it to somebody<br>(NOTICE:its possible to find your game, but when theres bigger numbers its harder to find)</p>
+<p>All you need to do is copy and paste the url of your game and send it to somebody.</p>
 <h1>Free For All!</h1>
 <p>
 Yep, You Dont Have To Use Money For This Website!
 </p>
 <h1>Comments</h1>
-<div class="commentsbox">
-<p id="comments">
-
-</p>
-</div>
+<div class="commentsbox"><p id="comments"></p></div>
 <label for="username">Username:</label>
 <input type="text" id="username">
 <label for="comment">Message:</label>
@@ -98,7 +95,7 @@ function postComment() {
 	document.getElementById("submitComment").innerHTML = "Submiting...";
 	servers.readFile("ggm-comments.txt",function (data) {
 		if (true) {
-			var val = "["+document.getElementById("username").value+"]:"+document.getElementById("comment").value;
+			var val = "<b>["+document.getElementById("username").value+"]</b>:"+document.getElementById("comment").value;
 			var splitedText = data.split("\n");
 			splitedText.push(val);
 			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";loadComments();});
@@ -109,6 +106,9 @@ function postComment() {
 }
 loadComments();
 document.getElementById("submitComment").onclick = postComment;
+servers.readFile("ggm-page-text.txt",function (data) {
+	document.getElementById("devMessage").innerHTML = data;
+});
 </script>
 
 </body>

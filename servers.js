@@ -47,6 +47,26 @@ window.servers = {
 			},1555)
 		};
 	},
+	deleteFile:function (name,callback) {
+		var service = new WebSocket(this.wss);
+		service.onopen = function () {
+			var notfinished = true
+			service.send(JSON.stringify({
+				"command":"removeFile",
+				"file":"./"+name
+			}));
+			service.onmessage = function (data) {
+				notfinished = false;
+				callback();
+			};
+			setTimeout(() => {
+				if (notfinished) {
+					callback();
+					service.close();
+				}
+			},1555)
+		};
+	},
 	readFileFast:function (name,callback) {
 		var notfinished = true
 		this.wsobject.send(JSON.stringify({
