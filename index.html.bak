@@ -32,9 +32,12 @@
 		height:360px;
 		overflow:scroll;
 		background-color:white;
+		text-align:left;
+	}
+	#comments {
 	}
 </style>
-
+<link rel="icon" href="favicon.png">
 </head>
 <body>
 
@@ -60,9 +63,12 @@ Yep, You Dont Have To Use Money For This Website!
 
 </p>
 </div>
+<label for="username">Username:</label>
+<input type="text" id="username">
+<label for="comment">Message:</label>
 <input type="text" id="comment">
 <button id="submitComment">Submit</button>
-<hr>
+<hr style="width:100vw;margin-left:-30px;">
 <p>Gvbvdxx Game Maker 2</p>
 <p style="font-size:12px;">©Gvbvdxx (2021)</p>
 
@@ -85,15 +91,16 @@ document.getElementById("submitComment").innerHTML = "Submit";
 function loadComments() {
 	servers.readFile("ggm-comments.txt",function (data) {
 		var splitedText = data.split("\n");
-		document.getElementById("comments").innerHTML = splitedText.join("<br>");
+		document.getElementById("comments").innerHTML = splitedText.slice(1).join("<br>");
 	});
 }
 function postComment() {
 	document.getElementById("submitComment").innerHTML = "Submiting...";
 	servers.readFile("ggm-comments.txt",function (data) {
 		if (true) {
+			var val = "["+document.getElementById("username").value+"]:"+document.getElementById("comment").value;
 			var splitedText = data.split("\n");
-			splitedText.push(document.getElementById("comment").value);
+			splitedText.push(val);
 			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";loadComments();});
 		} else {
 			document.getElementById("submitComment").innerHTML="Submit";
