@@ -2,7 +2,7 @@ window.shared = false;
 window.gui = {
 	loadScript: function (src,callback) {
 		var tmpscript = document.createElement("script");
-		tmpscript.src = window.getDirectory().gui + "/" + src + "?n=1";
+		tmpscript.src = window.getDirectory().gui + "/" + src + "?n=1"; //added update so they update once changed
 		document.body.appendChild(tmpscript);
 		tmpscript.onload = callback;
 		return tmpscript;
