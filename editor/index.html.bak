@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="icon" href="favicon.png?n=1">
-		<link rel="stylesheet" href="ggm-gui/styles.css?n=1">
+		<link rel="stylesheet" href="ggm-gui/styles.css">
 		<title>Gvbvdxx Game Maker 2 Editor</title>
 	</head>
 	<body>
@@ -88,6 +88,7 @@
 			<input type="text" id="gameTitle" title="Your Games Title Goes Here" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<button class="menuButtonOrange" onclick="share();" id="share">Share</button>
+			<button class="buttonBlue" style="float:left;" onclick="document.getElementById('projectDetails').hidden = false;" id="details">Details</button>
 			<p class="main_menu_item" onclick="saveOnline();" id="saveOnlineButton">Save Online</p>
 			<p class="main_menu_item" onclick="reportButton();" id="report">Report</p>
 		</div>
@@ -148,7 +149,7 @@
 				</center>
 			</div>
 		</div>
-		<div id="projectDetails">
+		<div id="projectDetails" hidden>
 			<div style="
 				top:50%;
 				left:50%;
