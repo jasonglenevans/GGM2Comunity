@@ -48,6 +48,18 @@ window.vm = {
 			tick: []
 		},
 		block:{
+			deleteList:function (array,number) {
+				delete array[number];
+				var index = 0;
+				var genaratedArray = [];
+				while (array.length > index) {
+					if (!(array[index] == undefined)) {
+						genaratedArray.push(array[index]);
+					}
+					index += 1;
+				}
+				return genaratedArray;
+			},
 			makeSprite:function () {
 				var spr = {
 					direction:90,
@@ -150,6 +162,9 @@ window.vm = {
 		},
 		error: function (text) {
 			console.error("[vm - program]: " + text);
+		},
+		clear: function (text) {
+			console.clear();
 		}
 	},
 	simulateKey: function (data) {

@@ -7,6 +7,7 @@ BlockColors["files"] = "#f76707";
 BlockColors["game"] = "#364fc7";
 BlockColors["audio"] = "#e64980";
 BlockColors["lists"] = "#f03e3e";
+BlockColors["logging"] = "#434c5e";
 //load blocks
 gui.loadScript("blocks/control.js");
 gui.loadScript("blocks/operators.js");
@@ -14,6 +15,7 @@ gui.loadScript("blocks/files.js");
 gui.loadScript("blocks/game.js");
 gui.loadScript("blocks/audio.js");
 gui.loadScript("blocks/lists.js");
+gui.loadScript("blocks/loging.js");
 gui.loadScript("defaultGame.js");
 function myUpdateFunction(event) {
   var code = Blockly.JavaScript.workspaceToCode(workspace);

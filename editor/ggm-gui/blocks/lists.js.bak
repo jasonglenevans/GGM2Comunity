@@ -107,23 +107,6 @@ Blockly.defineBlocksWithJsonArray([
   "colour": BlockColors["lists"],
   "tooltip": "",
   "helpUrl": ""
-},
-{
-  "type": "gvbvdxx_lists_delete_all",
-  "message0": "%1 Delete all",
-  "args0": [
-    {
-      "type": "field_variable",
-      "name": "NAME",
-      "variable": "list"
-    }
-  ],
-  "inputsInline": false,
-  "previousStatement": null,
-  "nextStatement": null,
-  "colour": BlockColors["lists"],
-  "tooltip": "",
-  "helpUrl": ""
 }
 ]);
 Blockly.JavaScript['gvbvdxx_lists_new'] = function(block) {
@@ -168,10 +151,4 @@ Blockly.JavaScript['gvbvdxx_lists_length'] = function(block) {
   var code = variable_name+'.length';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
-};
-Blockly.JavaScript['gvbvdxx_lists_delete_all'] = function(block) {
-  var variable_name = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
-  // TODO: Assemble JavaScript into code variable.
-  var code = variable_name+' = [];\n';
-  return code;
 };

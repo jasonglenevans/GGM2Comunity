@@ -38,6 +38,7 @@ window.gui = {
 		if (JsonTextParsed.shared) {
 			window.shared = JsonTextParsed.shared;
 		}
+		document.getElementById("discription").value = JsonTextParsed.dis;
 	}
 }
 console.log("[gui]:starting up.");
@@ -188,7 +189,12 @@ resoureupload.onchange = function () {
 		resourceupload.value = "";
 	}
 	if (resourceupload.files[0]) {
-		reader.readAsDataURL(resourceupload.files[0]);
+		console.log(resourceupload.files[0].size);
+		if (resourceupload.files[0].size > 7000000) {
+			window.alert("file is too big! for reasons you cant upload something too big, if its music, please compress and find loops, it should help you");
+		} else {
+			reader.readAsDataURL(resourceupload.files[0]);
+		}
 	}
 };
 
@@ -240,6 +246,90 @@ var dialogOptions = {
 };
 var app = document.getElementById("app");
 dialogBackground.style.display = "none";
+window.gui.dialogs = {
+	alert: (function(message, callback) {
+		dialogBackground.style.display = "block";
+		
+		dialogBox.style.display = "block";
+		
+		dialogOptions.hideAll();
+		
+		dialogOptions.name.innerHTML = message;
+		
+		document.getElementById("dialogButtonCancel").hidden = true;
+		
+		dialogOptions.buttons.ok.onclick = function () {
+			try{app.hidden = false;
+				try {callback();} catch(e) {}
+				dialogBackground.style.display = "none";
+				dialogBox.style.display = "none";
+			}catch(e){}
+		};
+		
+		dialogOptions.buttons.cancel.onclick = function () {
+			try{try {callback();} catch(e) {}
+			dialogBackground.style.display = "none";
+			dialogBox.style.display = "none";
+		}catch(e){}
+		};
+	}),
+	confirm: (function(message, callback) {
+		dialogBackground.style.display = "block";
+		
+		dialogBox.style.display = "block";
+		
+		dialogOptions.hideAll();
+		
+		dialogOptions.name.innerHTML = message;
+		
+		dialogOptions.buttons.ok.onclick = function () {
+			try{app.hidden = false;
+			try {callback(true);} catch(e) {}
+			dialogBackground.style.display = "none";
+			dialogBox.style.display = "none";}catch(e){}
+		};
+		
+		dialogOptions.buttons.cancel.onclick = function () {
+			try{try {callback(false);} catch(e) {}
+			dialogBackground.style.display = "none";
+			dialogBox.style.display = "none";}catch(e){}
+		};
+	}),
+	prompt: (function(message, defaultValue, callback) {
+		dialogBackground.style.display = "block";
+		
+		
+		dialogBox.style.display = "block";
+		
+		
+		dialogOptions.hideAll();
+		
+		
+		dialogOptions.name.innerHTML = message;
+		
+		dialogOptions.inputs.txt.value = defaultValue;
+		
+		
+		dialogOptions.inputs.txt.hidden = false;
+		
+		
+		let dialogInput = dialogOptions.inputs.txt;
+		
+		
+		dialogOptions.buttons.ok.onclick = function () {
+			try {callback(dialogInput.value);} catch(e) {}
+			dialogBackground.style.display = "none";
+			dialogBox.style.display = "none";
+		};
+		
+		
+		dialogOptions.buttons.cancel.onclick = function () {
+			try {callback(null);} catch(e) {}
+			dialogBackground.style.display = "none";
+			dialogBox.style.display = "none";
+		};
+	})
+}
 Blockly.alert = (function(message, callback) {
 	dialogBackground.style.display = "block";
 	
