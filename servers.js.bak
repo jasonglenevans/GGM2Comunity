@@ -39,12 +39,6 @@ window.servers = {
 					callback(JSON.parse(data.data).data);
 				}
 			};
-			setTimeout(() => {
-				if (notfinished) {
-					callback();
-					service.close();
-				}
-			},1555)
 		};
 	},
 	deleteFile:function (name,callback) {
@@ -59,12 +53,6 @@ window.servers = {
 				notfinished = false;
 				callback();
 			};
-			setTimeout(() => {
-				if (notfinished) {
-					callback();
-					service.close();
-				}
-			},1555)
 		};
 	},
 	readFileFast:function (name,callback) {

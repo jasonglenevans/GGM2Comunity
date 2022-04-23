@@ -71,6 +71,6 @@ window.servers = {
 		};
 	}
 };
-window.servers.wsobject.onclose = function () {
+window.servers.wsobject.addEventListener("close",function () {
 	window.servers.wsobject = new WebSocket("wss://"+window.serverId+".glitch.me");
-};
+})

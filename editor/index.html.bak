@@ -277,6 +277,7 @@ padding: 10px;
 		</category>
 		<sep></sep>
 		<category name="Variables" custom="VARIABLE" colour="#CE3175"></category>
+		<category name="Functions" custom="PROCEDURE" colour="#8a2be2"></category>
 		
 		</xml>
 		<div id="loadingscreen" style="z-index:1000;">

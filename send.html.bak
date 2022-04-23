@@ -96,7 +96,8 @@ function reloadmsg(cb) {
 				div.children[5].onclick = function () {
 					window.scrollTo(0,0);
 					document.getElementById("title").value = div.children[0].value + " - Reply";
-					document.getElementById("message").value = "{\nReply To "+div.children[0].value+":\n"+div.children[4].value+"\n}";
+					document.getElementById("message").value = "{\nReply To "+div.children[0].value+":\n"+div.children[4].value+"\n}\n";
+					document.getElementById("message").focus();
 				}
 				document.getElementById("messages").appendChild(div);
 				index += 1;
@@ -135,6 +136,14 @@ function send() {
 	});
 }
 </script>
-
+<script>
+if (false) {
+	console.log("creator is here, ignoring errors.");
+} else {
+	servers.readFile("ggm-info.json",(data) => {
+		var info = JSON.parse(data);
+	});
+}
+</script>
 </body>
 </html>
