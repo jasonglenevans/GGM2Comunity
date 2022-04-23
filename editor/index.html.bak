@@ -281,7 +281,7 @@ padding: 10px;
 		</xml>
 		<div id="loadingscreen" style="z-index:1000;">
 			<center class="loadingscreen_center_text">
-				<h1 class="loadingscreen_text" id="LOADINGSCREENTEXT">Gvbvdxx Game Maker 2 Is loading</h1>
+				<p class="loadingscreen_text" id="LOADINGSCREENTEXT"><h1 style="color:white;" id="loadingScreenHeader">Gvbvdxx Game Maker 2 Is loading</h1></p>
 			</center>
 		</div>
 		<div id="main_menu">
@@ -415,6 +415,6 @@ padding: 10px;
 		<script src="ggm-gui/index.js?n=1"></script>
 		<!--The Upload Scripts-->
 		<script src="../servers.js?n=1"></script>
-		<script src="../createServers.js?v="></script>
+		<script src="../createServers.js?n=1"></script>
 	</body>
 </html>

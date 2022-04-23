@@ -1,24 +1,30 @@
 let params = (new URL(document.location)).searchParams;
 let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
-var projectId = 0
+var projectId = 0;
+var email = "jasonglenevans2010@gmail.com";
 if (id) {
 projectId = id
 setTimeout(() => {
 	document.getElementById("loadingscreen").hidden = false
 	servers.readFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",function (data) {
 		if (data == "REPORTED") {
-			document.getElementById("LOADINGSCREENTEXT").innerHTML = "Sorry,But This Project Was Removed.";
+			document.getElementById("LOADINGSCREENTEXT").innerHTML = "<h1 style='color:white;'>Sorry,But This Project Was Removed.</h1>";
 		} else {
 			gui.jsonTextToEditor(data);
 			updateShareText();
-			document.getElementById("loadingscreen").hidden = true
+			document.getElementById("loadingscreen").hidden = true;
+			function stoperror(msg, url, lineNo, columnNo, error) {
+				window.alert("Project Player Code Ran Into A Problem, Click Ok Or Anywhere In The Window To Reload.");
+				window.location.reload();
+				return true;
+			}
+			window.onerror = stoperror;
 		}
 	});
 },50)
 } else {
 var loadingText = "Making New Project...";
-var email = "jasonglenevans2010@gmail.com";
 setTimeout(() => {
 servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 	projectId = Number(data)+1
@@ -34,19 +40,12 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 			});
 		});
 	} else {
-		document.getElementsByClassName("loadingscreen_center_text")[0].style.marginTop = 0;
-		loadingText = `
-			<h1>WHOOPS!!!!</h1><br>
-			<p>We have ran into a problem...</p><br>
-			<p>Your Error Is:</p><br>
-			<p>Trying To Make A Project But The Counter Is Set Empty/Null</p><br>
-			<p>Please Try To <a href="mailto: `+email+`">Email Me</a>.</p>
-		`;
+		window.alert("Something Went Wong When Trying To Make A New Project.");
 	}
 });
 },37);
 setInterval(function (){
-	document.getElementById("LOADINGSCREENTEXT").innerHTML = loadingText;
+	document.getElementById("loadingScreenHeader").innerHTML = loadingText;
 	document.getElementById("loadingscreen").hidden = false;
 },1);
 }

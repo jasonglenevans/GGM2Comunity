@@ -56,12 +56,8 @@ window.servers = {
 				"file":"./"+name
 			}));
 			service.onmessage = function (data) {
-				notfinished = false
-				if (JSON.parse(data.data).error) {
-					callback();
-				} else {
-					callback(JSON.parse(data.data).data);
-				}
+				notfinished = false;
+				callback();
 			};
 			setTimeout(() => {
 				if (notfinished) {
