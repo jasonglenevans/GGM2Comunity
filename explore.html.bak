@@ -69,6 +69,7 @@
 function serverLoad() {
 	var idCounter = 0
 	var maxCount = 0
+	var sharedCount = 0
 	function getProject() {
 		if (idCounter < 1) {
 			document.getElementById("explore").innerHTML = "";
@@ -90,14 +91,14 @@ function serverLoad() {
 						}
 						b.setAttribute("class","project");
 						b.setAttribute("id",idCounter);
+						sharedCount += 1;
 					}
 				}
 			}catch(e){}
 			if (idCounter < maxCount) {
 				idCounter += 1
-				getProject()
+				getProject();
 			} else {
-				document.getElementById("loading").hidden = true;
 			}
 		});
 	}

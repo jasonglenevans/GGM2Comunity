@@ -69,6 +69,7 @@
 function serverLoad() {
 	var idCounter = 0
 	var maxCount = 0
+	var sharedCount = 0
 	function getProject() {
 		if (idCounter < 1) {
 			document.getElementById("explore").innerHTML = "";
@@ -90,16 +91,16 @@ function serverLoad() {
 						}
 						b.setAttribute("class","project");
 						b.setAttribute("id",idCounter);
+						sharedCount += 1;
 					}
 				}
 			}catch(e){}
 			if (idCounter < maxCount) {
 				idCounter += 1
-				getProject()
+				getProject();
 			} else {
-				document.getElementById("loading").hidden = true;
-				if (idCounter == 0) {
-					document.getElementById("loading").innerHTML = "There Are No Projects"
+				if (sharedCount < 1) {
+					document.getElementById("loading").innerHTML = "There Are No Projects You Should <a href='editor/index.html'>Make One!</a>";
 				} else {
 					document.getElementById("loading").hidden = true;
 				}
