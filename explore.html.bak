@@ -27,19 +27,14 @@
 		background-color:#edf2ff;
 		font-family:Arial;
 	}
-	.project {
-		border:none;
-		background-color:#0085b5;
-		/*border-left-style:solid;
-		border-left-color:blue;*/
-		color:white;
-		font-weight:bold;
-		margin-right:30px;
-		border-radius:8px;
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+		text-align:left;
 	}
-	.project:hover {
-		background-color:#24b8ed;
-		cursor:pointer;
+	#comments {
 	}
 </style>
 <link rel="icon" href="favicon.png">
@@ -99,6 +94,11 @@ function serverLoad() {
 				idCounter += 1
 				getProject();
 			} else {
+				if (sharedCount < 1) {
+					document.getElementById("loading").innerHTML = "There Are No Projects You Should <a href='editor/index.html'>Make One!</a>";
+				} else {
+					document.getElementById("loading").hidden = true;
+				}
 			}
 		});
 	}

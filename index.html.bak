@@ -65,7 +65,7 @@ Yep, You Dont Have To Use Money For This Website!
 <label for="comment">Message:</label>
 <input type="text" id="comment">
 <button id="submitComment">Submit</button>
-<hr style="width:100vw;margin-left:-30px;">
+<hr style="">
 <p>Gvbvdxx Game Maker 2</p>
 <p style="font-size:12px;">©Gvbvdxx (2021)</p>
 
@@ -106,6 +106,7 @@ function postComment() {
 }
 loadComments();
 document.getElementById("submitComment").onclick = postComment;
+document.getElementById("devMessage").innerHTML = "Loading...";
 servers.readFile("ggm-page-text.txt",function (data) {
 	document.getElementById("devMessage").innerHTML = data;
 });
