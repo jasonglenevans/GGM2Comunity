@@ -2,7 +2,6 @@ let params = (new URL(document.location)).searchParams;
 let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0
-
 if (id) {
 projectId = id
 setTimeout(() => {
@@ -18,21 +17,38 @@ setTimeout(() => {
 	});
 },50)
 } else {
+var loadingText = "Making New Project...";
+var email = "jasonglenevans2010@gmail.com";
 setTimeout(() => {
 servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 	projectId = Number(data)+1
-	document.getElementById("loadingscreen").hidden = false
-	servers.saveFile("ggm-community-accountid-latest-id.txt",projectId,function () {
-		console.log("saved new id.");
+	if (Number(data)) {
 		document.getElementById("loadingscreen").hidden = false
-		servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
-			console.log("saved new project data.");
-			window.location.replace(window.location.href+"?id="+projectId);
-			document.getElementById("loadingscreen").hidden = true
+		servers.saveFile("ggm-community-accountid-latest-id.txt",projectId,function () {
+			console.log("saved new id.");
+			document.getElementById("loadingscreen").hidden = false
+			servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
+				console.log("saved new project data.");
+				window.location.replace(window.location.href+"?id="+projectId);
+				document.getElementById("loadingscreen").hidden = true
+			});
 		});
-	});
+	} else {
+		document.getElementById("LOADINGSCREENTEXT").style.position = "none";
+		loadingText = `
+			<h1>WHOOPS!!!!</h1><br>
+			<p>We have ran into a problem...</p><br>
+			<p>Your Error Is:</p><br>
+			<p>Trying To Make A Project But The Counter Is Set Empty/Null</p><br>
+			<p>Please Try To <a href="mailto: `+email+`">Email Me</a>.</p>
+		`;
+	}
 });
-},37)
+},37);
+setInterval(function (){
+	document.getElementById("LOADINGSCREENTEXT").innerHTML = loadingText;
+	document.getElementById("loadingscreen").hidden = false;
+},1);
 }
 function saveOnline() {
 	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."

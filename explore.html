@@ -98,6 +98,11 @@ function serverLoad() {
 				getProject()
 			} else {
 				document.getElementById("loading").hidden = true;
+				if (idCounter == 0) {
+					document.getElementById("loading").innerHTML = "There Are No Projects"
+				} else {
+					document.getElementById("loading").hidden = true;
+				}
 			}
 		});
 	}
