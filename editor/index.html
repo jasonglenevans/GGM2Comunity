@@ -305,7 +305,7 @@ padding: 10px;
 			<p class="main_menu_item" onclick="load()">Load</p>
 			<!--<p class="main_menu_item" onclick="window.open('./help/index.html')">Help</p>-->
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
-			<input type="text" id="gameTitle" title="Your Games Title Goes Here" value="Untitled Game">
+			<input type="text" id="gameTitle" title="Your Games Title Goes Here" onchange="saveOnline();" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<button class="buttonBlue" style="float:left;" onclick="document.getElementById('projectDetails').hidden = false;" id="details">Details</button>
