@@ -83,12 +83,21 @@ function reloadmsg(cb) {
 			var json = JSON.parse(data);
 			while (index < json.messages.length) {
 				var div = document.createElement("div");
-				div.innerHTML = '<input disabled><input disabled><br><br><textarea style="resize:none;height:224px;width:381px;" disabled>Message</textarea><br>';
+				div.innerHTML = '<input disabled><input disabled><br><br><textarea style="resize:none;height:224px;width:381px;" disabled>Message</textarea><p>Reply To Above</p><br>';
 				div.children[0].value = json.messages[index].title;
 				div.children[1].value = json.messages[index].username;
 				div.children[4].value = json.messages[index].message;
 				div.children[4].style.width = json.messages[index].width;
 				div.children[4].style.height = json.messages[index].height;
+				//reply
+				div.children[5].style.color = "blue";
+				div.children[5].style.textDecoration = "underline";
+				div.children[5].style.cursor = "pointer";
+				div.children[5].onclick = function () {
+					window.scrollTo(0,0);
+					document.getElementById("title").value = div.children[0].value + " - Reply";
+					document.getElementById("message").value = "{\nReply To "+div.children[0].value+":\n"+div.children[4].value+"\n}";
+				}
 				document.getElementById("messages").appendChild(div);
 				index += 1;
 			}
@@ -119,7 +128,7 @@ function send() {
 				console.log("saved message");
 				document.getElementById("send").innerHTML = "Send";
 				reloadmsg(function () {
-					window.scrollTo(99999999999999999999999999999999,9999999999999999999999999999999999)
+					window.scrollTo(99999999999999999999999999999999,9999999999999999999999999999999999);
 				});
 			});
 		}
