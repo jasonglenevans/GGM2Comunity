@@ -286,11 +286,15 @@ padding: 10px;
 			<block type="gvbvdxx_lists_length"></block>
 			<block type="gvbvdxx_lists_delete_all"></block>
 		</category>
+		<sep></sep>
+		<category name="Functions" custom="PROCEDURE" colour="#8a2be2"></category>
 		<category colour="#434c5e" name="Loging">
 			<block type="gvbvdxx_loging_log"></block>
 			<block type="gvbvdxx_loging_clear"></block>
 		</category>
-		<category name="Functions" custom="PROCEDURE" colour="#8a2be2"></category>
+		<category colour="#009acd" name="Other">
+			<block type="gvbvdxx_group"></block>
+		</category>
 		
 		</xml>
 		<div id="loadingscreen" style="z-index:1000;">
@@ -305,7 +309,7 @@ padding: 10px;
 			<p class="main_menu_item" onclick="load()">Load</p>
 			<!--<p class="main_menu_item" onclick="window.open('./help/index.html')">Help</p>-->
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
-			<input type="text" id="gameTitle" title="Your Games Title Goes Here" onchange="saveOnline()" value="Untitled Game">
+			<input type="text" id="gameTitle" title="Your Games Title Goes Here" onchange="saveOnline();" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<button class="buttonBlue" style="float:left;" onclick="document.getElementById('projectDetails').hidden = false;" id="details">Details</button>

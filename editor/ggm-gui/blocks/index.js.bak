@@ -7,6 +7,8 @@ BlockColors["files"] = "#f76707";
 BlockColors["game"] = "#364fc7";
 BlockColors["audio"] = "#e64980";
 BlockColors["lists"] = "#f03e3e";
+BlockColors["logging"] = "#434c5e";
+BlockColors["other"] = "#009acd";
 //load blocks
 gui.loadScript("blocks/control.js");
 gui.loadScript("blocks/operators.js");

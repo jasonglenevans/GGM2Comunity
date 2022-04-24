@@ -144,7 +144,7 @@ Blockly.JavaScript['gvbvdxx_lists_item_number'] = function(block) {
   var variable_list = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('list'), Blockly.Variables.NAME_TYPE);
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_list+'['+value_name+'+1]';
+  var code = variable_list+'['+value_name+']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -159,7 +159,7 @@ Blockly.JavaScript['gvbvdxx_lists_delete_number'] = function(block) {
   var variable_name = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_name+' = vm.project.block.deleteList('+variable_name+','+value_name+'+1);\n';
+  var code = variable_name+' = vm.project.block.deleteList('+variable_name+','+value_name+');\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_lists_length'] = function(block) {

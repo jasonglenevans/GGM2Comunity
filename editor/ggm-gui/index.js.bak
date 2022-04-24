@@ -59,6 +59,15 @@ window.workspace = Blockly.inject(blocklyDiv,{
 		drag: true,
 		wheel: false
 	},
+    zoom:{
+		controls: true,
+		wheel: false,
+		startScale: 1.0,
+		maxScale: 3,
+		minScale: 0.3,
+		scaleSpeed: 1.2,
+		pinch: false
+	},
 	trashcan:false,
 	grid:{
 		spacing: 20,
@@ -148,6 +157,9 @@ vm.console.log = function (text) {
 }
 vm.console.error = function (text) {
 	document.getElementById('console').innerHTML += "Error:"+text+"<br>";
+}
+vm.console.clear = function (text) {
+	document.getElementById('console').innerHTML = "";
 }
 /*resources*/
 var resoureupload = document.getElementById('resourceupload');

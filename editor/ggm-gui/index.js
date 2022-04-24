@@ -51,6 +51,8 @@ var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 window.workspace = Blockly.inject(blocklyDiv,{
 	toolbox: toolbox,
+	collapse:false,
+	sounds:false,
 	move:{
 		scrollbars: {
 			horizontal: true,
@@ -58,6 +60,15 @@ window.workspace = Blockly.inject(blocklyDiv,{
 		},
 		drag: true,
 		wheel: false
+	},
+    zoom:{
+		controls: true,
+		wheel: false,
+		startScale: 1.0,
+		maxScale: 3,
+		minScale: 0.3,
+		scaleSpeed: 1.2,
+		pinch: false
 	},
 	trashcan:false,
 	grid:{

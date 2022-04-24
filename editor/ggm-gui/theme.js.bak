@@ -47,7 +47,7 @@ blockItem2.scopeType = Blockly.ContextMenuRegistry.ScopeType.BLOCK;
 Blockly.ContextMenuRegistry.registry.register(blockItem1);
 Blockly.ContextMenuRegistry.registry.register(blockItem2);
 
-
+Blockly.BlockSvg.START_HAT = true;
 class CustomConstantsProvider extends Blockly.blockRendering.ConstantProvider {
   constructor() {
     // Set up all of the constants from the base provider.
@@ -186,8 +186,11 @@ class CustomRenderer extends Blockly.blockRendering.Renderer {
    * @override
    */
   makeConstants_() {
-    return new CustomConstantsProvider();
+	  var a = new CustomConstantsProvider();
+	  a.FULL_BLOCK_FIELDS = false;
+	  a.NO_PADDING = 1;
+    return a;
   }
 };
 
-//Blockly.blockRendering.register('custom_renderer', CustomRenderer);
+Blockly.blockRendering.register('custom_renderer', CustomRenderer);
