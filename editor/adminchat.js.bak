@@ -1,0 +1,8 @@
+var server = new chat.server();
+window.onjoin = function () {
+	server.fakeMessage({
+		message:"admin commands has been loaded",
+		color:"blue",
+		name:"Admin Commands"
+	});
+}
