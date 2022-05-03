@@ -3,6 +3,7 @@ let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
+window.extensions.setEnabled(false);
 if (id) {
 projectId = id
 setTimeout(() => {
@@ -45,7 +46,7 @@ servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 });
 },37);
 setInterval(function (){
-	document.getElementById("LOADINGSCREENTEXT").innerHTML = loadingText;
+	document.getElementById("loadingScreenHeader").innerHTML = loadingText;
 	document.getElementById("loadingscreen").hidden = false;
 },1);
 }

@@ -1,0 +1,93 @@
+var blockSeparator = "<sep gap=\"36\"></sep>";
+var toolboxXML = `
+		<category colour="#1971c2" name="Sprites">
+			
+			
+			<block type="variables_set">
+				<value name="VALUE">
+					<block type="gvbvdxx_game_sprites_empty"></block>
+				</value>
+				<field name="VAR">sprite</field>
+			</block>
+			<block type="gvbvdxx_game_sprites_empty"></block>
+			<block type="gvbvdxx_game_sprites_set_img"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_sprites_set_position"></block>
+			<block type="gvbvdxx_game_sprites_size"></block>
+			<block type="gvbvdxx_game_sprites_flip"></block>
+			<block type="gvbvdxx_game_sprites_direction"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_sprites_show"></block>
+			<block type="gvbvdxx_game_sprites_hide"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_sprite_get"></block>
+		</category>
+		<category colour="#1971c2" name="Events">
+			<block type="gvbvdxx_game_ontick"></block>
+		</category>
+		<category colour="#1971c2" name="Sensing">
+			<block type="gvbvdxx_game_mouse_x"></block>
+			<block type="gvbvdxx_game_mouse_y"></block>
+			<block type="gvbvdxx_game_mouse_down"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_keydown"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_coliding"></block>
+		</category>
+		<category colour="#e64980" name="Audio">
+			<block type="gvbvdxx_audio_playsfx"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_audio_playbgm"></block>
+			<block type="gvbvdxx_audio_pausebgm"></block>
+			<block type="gvbvdxx_audio_playbgmnosrc"></block>
+		</category>
+		<category colour="#37b24d" name="Operators">
+			<block type="gvbvdxx_operators_maths"></block>
+			<block type="gvbvdxx_operators_true_false"></block>
+			<block type="gvbvdxx_operators_compare"></block>
+			<block type="gvbvdxx_operators_number"></block>
+			<block type="gvbvdxx_operators_color"></block>
+			<block type="gvbvdxx_operators_text"></block>
+			<block type="gvbvdxx_operators_random"></block>
+			<block type="gvbvdxx_operators_math"></block>
+		</category>
+		<category colour="#fab005" name="Control">
+			<block type="gvbvdxx_control_if_then"></block>
+			<block type="gvbvdxx_control_if_then_else"></block>
+			<block type="gvbvdxx_control_repeat"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_control_while"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_control_wait"></block>
+		</category>
+		<category colour="#f76707" name="Files">
+			<block type="gvbvdxx_files_dataurl"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_files_makeimage">
+            <value name="dataURI">
+                <block type="gvbvdxx_files_dataurl"></block>
+            </value>
+			</block>
+		</category>
+		<sep></sep>
+		<category name="Variables" custom="VARIABLE" colour="#CE3175"></category>
+		<category name="Functions" custom="PROCEDURE" colour="#8a2be2"></category>
+		<category colour="#f03e3e" name="Lists">
+			<block type="gvbvdxx_lists_new"></block>
+			<block type="gvbvdxx_lists_new_text"></block>
+			<block type="gvbvdxx_lists_item_number"></block>
+			<block type="gvbvdxx_lists_add"></block>
+			<block type="gvbvdxx_lists_delete_number"></block>
+			<block type="gvbvdxx_lists_length"></block>
+			<block type="gvbvdxx_lists_delete_all"></block>
+		</category>
+		<sep></sep>
+		<category colour="#434c5e" name="Loging">
+			<block type="gvbvdxx_loging_log"></block>
+			<block type="gvbvdxx_loging_clear"></block>
+		</category>
+		<category colour="#009acd" name="Other">
+			<block type="gvbvdxx_group"></block>
+		</category>
+`;
+document.getElementById("toolbox").innerHTML = toolboxXML;

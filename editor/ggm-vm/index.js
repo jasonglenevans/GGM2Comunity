@@ -1,6 +1,8 @@
 window.vm = {
+	idcounter:0,
 	control: {
 		start: function (a) {
+			vm.idcounter = 0;
 			if (vm.audioEngine) {
 				if (vm.renderer) {
 					vm.control.stop();
@@ -18,6 +20,7 @@ window.vm = {
 			}
 		},
 		stop: function () {
+			vm.idcounter = 0;
 			vm.control.running = false;
 			vm.project.sprites = [];
 			vm.project.events.tick = [];
@@ -61,6 +64,7 @@ window.vm = {
 				return genaratedArray;
 			},
 			makeSprite:function () {
+				vm.idcounter += 1;
 				var spr = {
 					direction:90,
 					x:0,
@@ -69,7 +73,8 @@ window.vm = {
 					height:32,
 					image:null,
 					flip:"none",
-					id:Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000)
+					id:vm.idcounter,
+					gost:0
 				};
 				this.showSprite(spr);
 				return spr;

@@ -356,7 +356,6 @@ Blockly.alert = (function(message, callback) {
 	document.getElementById("dialogButtonCancel").hidden = true;
 	
 	dialogOptions.buttons.ok.onclick = function () {
-		app.hidden = false;
 		try {callback();} catch(e) {}
 		dialogBackground.style.display = "none";
 		dialogBox.style.display = "none";
@@ -379,7 +378,6 @@ Blockly.confirm = (function(message, callback) {
 	dialogOptions.name.innerHTML = message;
 	
 	dialogOptions.buttons.ok.onclick = function () {
-		app.hidden = false;
 		try {callback(true);} catch(e) {}
 		dialogBackground.style.display = "none";
 		dialogBox.style.display = "none";
@@ -426,3 +424,25 @@ Blockly.prompt = (function(message, defaultValue, callback) {
 		dialogBox.style.display = "none";
 	};
 });
+
+//Toolbox Management
+
+window.toolboxManagement = class {
+	constructor () {
+		this.blockly = Blockly;
+		this.workspace = workspace;
+		this.addCategory = function (info) {
+			document.getElementById("toolbox").innerHTML += `
+			<category name='${info.name}' colour='${info.color}'>
+			${this.blockXML}
+			</category>
+			`;
+			this.workspace.updateToolbox("<xml>"+document.getElementById("toolbox").innerHTML+"</xml>")
+		};
+		this.blockXML = "";
+		this.log = function (text) {
+			console.log("extension: " + text)
+		};
+		this.vm = window.vm;
+	}
+};

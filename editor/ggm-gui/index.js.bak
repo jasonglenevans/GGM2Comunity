@@ -51,6 +51,8 @@ var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 window.workspace = Blockly.inject(blocklyDiv,{
 	toolbox: toolbox,
+	collapse:false,
+	sounds:false,
 	move:{
 		scrollbars: {
 			horizontal: true,
@@ -424,3 +426,25 @@ Blockly.prompt = (function(message, defaultValue, callback) {
 		dialogBox.style.display = "none";
 	};
 });
+
+//Toolbox Management
+
+window.toolboxManagement = class {
+	constructor () {
+		this.blockly = Blockly;
+		this.workspace = workspace;
+		this.addCategory = function (info) {
+			document.getElementById("toolbox").innerHTML += `
+			<category name='${info.name}' colour='${info.color}'>
+			${this.blockXML}
+			</category>
+			`;
+			this.workspace.updateToolbox("<xml>"+document.getElementById("toolbox").innerHTML+"</xml>")
+		};
+		this.blockXML = "";
+		this.log = function (text) {
+			console.log("extension: " + text)
+		};
+		this.vm = window.vm;
+	}
+};

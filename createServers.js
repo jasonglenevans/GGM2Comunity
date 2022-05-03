@@ -3,6 +3,7 @@ let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
+window.extension.setEnabled(false);
 if (id) {
 projectId = id
 setTimeout(() => {
