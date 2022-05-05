@@ -112,6 +112,6 @@ servers.readFile("ggm-page-text.txt",function (data) {
 	document.getElementById("devMessage").innerHTML = data;
 });
 </script>
-
+<script src="info.js?n=1"></script>
 </body>
 </html>

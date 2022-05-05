@@ -7,10 +7,11 @@ window.extension = {
 	},
 	fileSelect: document.createElement("input"), //contains the file select for loading extensions
 	loadButton: document.createElement("p"),
+	status:document.createElement("p"), //tell how the connection is doing
 	brodcastBlockToServer: function (blocktype,args0) {
 		try{
 			this.ws.send(JSON.stringify({
-				type:"GGM_BLOCK_COMMAND",
+				command:"GGM_BLOCK_COMMAND",
 				blockInfo:{
 					type:blocktype,
 					args0:args0
@@ -31,6 +32,12 @@ function reconnectwsExtension(wsURI) {
 	};
 	window.extension.ws.onclose = () => {
 		reconnectwsExtension(wsURI);
+		window.extension.status.innerHTML = "Not Connected To Helper";
+		window.extension.status.style.color = "red";
+	};
+	window.extension.ws.onopen = () => {
+		window.extension.status.innerHTML = "Connected To Helper";
+		window.extension.status.style.color = "green";
 	};
 }
 function forcewsExtensionClose(wsURI) {
@@ -87,14 +94,16 @@ function makeBlocks() {
 }
 function wsExtensionLoad(plainJSON) {
 	try{
-	window.extension.JSONObject = JSON.parse(plainJSON); //make a plain json object
-	reconnectwsExtension(window.extension.JSONObject.wsURI); //connect
-	var toolboxmanagement = new toolboxManagement();
-	toolboxmanagement.blockXML = makeBlocks();
-	toolboxmanagement.addCategory({
-		name:window.extension.JSONObject.title,
-		color:window.extension.JSONObject.color,
-	})
+		window.extension.JSONObject = JSON.parse(plainJSON); //make a plain json object
+		reconnectwsExtension(window.extension.JSONObject.wsURI); //connect
+		var toolboxmanagement = new toolboxManagement();
+		toolboxmanagement.blockXML = makeBlocks();
+		toolboxmanagement.addCategory({
+			name:window.extension.JSONObject.title,
+			color:window.extension.JSONObject.color,
+		})
+		window.extension.status.innerHTML = "Connecting To Helper...";
+		window.extension.status.style.color = "white";
 	}catch(e){window.alert("Please contact the devloper of the extension, the error is " + e)}
 }
 
@@ -106,6 +115,7 @@ window.extension.fileSelect.accept = ".json"; //accept only json files
 
 if (document.getElementById("main_menu")) { //for compadiblity, check if there is an main_menu id somewhere
 	document.getElementById("main_menu").appendChild(window.extension.loadButton);
+	document.getElementById("main_menu").appendChild(window.extension.status);
 }
 
 window.extension.loadButton.onclick = function () {

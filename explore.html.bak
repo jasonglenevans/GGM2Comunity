@@ -79,7 +79,8 @@ function serverLoad() {
 			try{
 				var json = JSON.parse(data)
 				if (json.title) {
-					if (json.shared) {
+				//json.shared
+					if (true) {
 						var b = document.createElement("button");
 						var a = document.createElement("a");
 						a.href = "editor/index.html?id="+idCounter;
@@ -116,6 +117,7 @@ function serverLoad() {
 servers.wsobject.onopen = serverLoad;
 
 </script>
+<script src="info.js?n=1"></script>
 
 </body>
 </html>

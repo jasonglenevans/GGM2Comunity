@@ -277,6 +277,9 @@ Blockly.JavaScript['gvbvdxx_operators_math'] = function(block) {
 Blockly.JavaScript['gvbvdxx_operators_maths'] = function(block) {
   var dropdown_maths = block.getFieldValue('maths');
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  if (value_name == "") {
+	  value_name = "(0)";
+  }
   // TODO: Assemble JavaScript into code variable.
   var code = 'Math.'+dropdown_maths+value_name;
   // TODO: Change ORDER_NONE to the correct strength.

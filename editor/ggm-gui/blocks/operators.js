@@ -253,7 +253,7 @@ Blockly.JavaScript['gvbvdxx_operators_color'] = function(block) {
 Blockly.JavaScript['gvbvdxx_operators_text'] = function(block) {
   var text = block.getFieldValue('text');
   // TODO: Assemble JavaScript into code variable.
-  var code = '"'+text+'"';
+  var code = '"'+text.replaceAll("\"","\\\"")+'"';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

@@ -3,83 +3,90 @@ let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
-window.extension.setEnabled(false);
-if (id) {
-projectId = id
-setTimeout(() => {
-	document.getElementById("loadingscreen").hidden = false
-	servers.readFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",function (data) {
-		if (data == "REPORTED") {
-			document.getElementById("LOADINGSCREENTEXT").innerHTML = "<h1 style='color:white;'>Sorry,But This Project Was Removed.</h1>";
-		} else {
-			gui.jsonTextToEditor(data);
-			updateShareText();
-			document.getElementById("loadingscreen").hidden = true;
-			function stoperror(msg, url, lineNo, columnNo, error) {
-				window.alert("Project Player Code Ran Into A Problem, Click Ok Or Anywhere In The Window To Reload.");
-				window.location.reload();
-				return true;
+document.getElementById("online_options").hidden = false;
+if (params.get('offline')) {
+	document.getElementById("online_options").hidden = true;
+} else {
+	window.extension.setEnabled(false);
+	if (id) {
+	projectId = id
+	setTimeout(() => {
+		document.getElementById("loadingscreen").hidden = false
+		servers.readFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",function (data) {
+			if (data == "REPORTED") {
+				document.getElementById("LOADINGSCREENTEXT").innerHTML = "<h1 style='color:white;'>Sorry,But This Project Was Removed.</h1>";
+			} else {
+				gui.jsonTextToEditor(data);
+				updateShareText();
+				document.getElementById("loadingscreen").hidden = true;
+				function stoperror(msg, url, lineNo, columnNo, error) {
+					window.alert("Project Player Code Ran Into A Problem, Click Ok Or Anywhere In The Window To Reload.");
+					window.location.reload();
+					return true;
+				}
+				window.onerror = stoperror;
 			}
-			window.onerror = stoperror;
+		});
+	},50)
+	} else {
+	var loadingText = "Making New Project...";
+	setTimeout(() => {
+	servers.log("creating project...");
+	servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
+		projectId = Number(data)+1
+		if (Number(data)) {
+			document.getElementById("loadingscreen").hidden = false
+			servers.saveFile("ggm-community-accountid-latest-id.txt",projectId,function () {
+				console.log("saved new id.");
+				document.getElementById("loadingscreen").hidden = false
+				servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
+					console.log("saved new project data.");
+					window.location.replace(window.location.href+"?id="+projectId);
+					document.getElementById("loadingscreen").hidden = true
+					servers.log("created project.");
+				});
+			});
+		} else {
+			window.alert("Something Went Wong When Trying To Make A New Project.");
 		}
 	});
-},50)
-} else {
-var loadingText = "Making New Project...";
-setTimeout(() => {
-servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
-	projectId = Number(data)+1
-	if (Number(data)) {
-		document.getElementById("loadingscreen").hidden = false
-		servers.saveFile("ggm-community-accountid-latest-id.txt",projectId,function () {
-			console.log("saved new id.");
-			document.getElementById("loadingscreen").hidden = false
-			servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
-				console.log("saved new project data.");
-				window.location.replace(window.location.href+"?id="+projectId);
-				document.getElementById("loadingscreen").hidden = true
-			});
+	},37);
+	setInterval(function (){
+		document.getElementById("loadingScreenHeader").innerHTML = loadingText;
+		document.getElementById("loadingscreen").hidden = false;
+	},1);
+	}
+	function saveOnline() {
+		document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
+		servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
+			console.log("saved new project data.");
+			document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText;
+			updateShareText();
 		});
-	} else {
-		window.alert("Something Went Wong When Trying To Make A New Project.");
 	}
-});
-},37);
-setInterval(function (){
-	document.getElementById("loadingScreenHeader").innerHTML = loadingText;
-	document.getElementById("loadingscreen").hidden = false;
-},1);
-}
-function saveOnline() {
-	document.getElementById("saveOnlineButton").innerHTML = "Saving Online..."
-	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
-		console.log("saved new project data.");
-		document.getElementById("saveOnlineButton").innerHTML = ogSaveOnlineText;
+	function reportButton() {
+		document.getElementById("report").innerHTML = "Reporting..."
+		servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver","REPORTED",function () {
+			document.getElementById("report").innerHTML = "Report";
+			window.location.reload();
+		});
+	}
+	var sharebutton = document.getElementById("share");
+	function updateShareText() {
+		if (window.shared) {
+			sharebutton.innerHTML = "Unshare";
+		} else {
+			sharebutton.innerHTML = "Share";
+		}
+	}
+	function share() {
+		if (window.shared) {
+			window.shared = false;
+		} else {
+			window.shared = true;
+		}
 		updateShareText();
-	});
-}
-function reportButton() {
-	document.getElementById("report").innerHTML = "Reporting..."
-	servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver","REPORTED",function () {
-		document.getElementById("report").innerHTML = "Report";
-		window.location.reload();
-	});
-}
-var sharebutton = document.getElementById("share");
-function updateShareText() {
-	if (window.shared) {
-		sharebutton.innerHTML = "Unshare";
-	} else {
-		sharebutton.innerHTML = "Share";
-	}
-}
-function share() {
-	if (window.shared) {
-		window.shared = false;
-	} else {
-		window.shared = true;
+		saveOnline();
 	}
 	updateShareText();
-	saveOnline();
 }
-updateShareText();

@@ -239,10 +239,10 @@ padding: 10px;
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
 			<input type="text" id="gameTitle" title="Your Games Title Goes Here" onchange="saveOnline();" value="Untitled Game">
 			<p style="float:left; color:#1c7ed6; font-size:23px; margin-left:10px; margin-top:11px;">|</p>
-			<button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<button class="buttonBlue" style="float:left;" onclick="document.getElementById('projectDetails').hidden = false;" id="details">Details</button>
+			<div id="online_options" hidden><button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<p class="main_menu_item" onclick="saveOnline();" id="saveOnlineButton">Save Online</p>
-			<p class="main_menu_item" onclick="reportButton();" id="report">Report</p>
+			<p class="main_menu_item" onclick="reportButton();" id="report">Report</p></div>
 		</div>
 		<div id="blocklyArea">
 			
@@ -363,7 +363,7 @@ padding: 10px;
 		<script src="ggm-gui/costom_manager.js?n=1"></script>
 		<!--The Upload Scripts-->
 		<script src="../servers.js?n=1"></script>
-		<!--<script src="../createServers.js?n=1"></script>-->
+		
 	</body>
 </html>
 <script>window.errordir = "../"</script>

@@ -79,6 +79,7 @@ function serverLoad() {
 			try{
 				var json = JSON.parse(data)
 				if (json.title) {
+				//json.shared
 					if (json.shared) {
 						var b = document.createElement("button");
 						var a = document.createElement("a");
