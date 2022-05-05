@@ -27,8 +27,7 @@ window.vm = {
 			vm.project.sprites = [];
 			vm.project.keysPressed = [];
 			vm.audioEngine.stop();
-		},
-		runnning:false
+		}
 	},
 	code: "",
 	renderer:null,
@@ -50,6 +49,7 @@ window.vm = {
 		events: {
 			tick: []
 		},
+		resources:[],
 		block:{
 			deleteList:function (array,number) {
 				delete array[number];

@@ -28,7 +28,7 @@ window.vm = {
 			vm.project.keysPressed = [];
 			vm.audioEngine.stop();
 		},
-		runnning:false
+		running:false
 	},
 	code: "",
 	renderer:null,
