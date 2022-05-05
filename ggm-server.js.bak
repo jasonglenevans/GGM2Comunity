@@ -3,19 +3,6 @@ const wsServer = new WebSocket.Server({
   port: 5000,
 });
 const fs = require("fs");
-var filelog = fs.readFileSync("log.txt");
-console.log = function (a,b) {
-  var msg2 = null;
-  try{
-    msg2 = JSON.stringify(b);
-  }catch(e){}
-  if (msg2) {
-    filelog += "\n"+a/*+msg2*/;
-  } else {
-    filelog += "\n"+a;
-  }
-  fs.writeFileSync("log.txt",filelog)
-};
 console.log("WSS server code started.");
 /**
 This is by gvbvdxx,

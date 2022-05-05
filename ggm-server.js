@@ -21,7 +21,7 @@ wsServer.on("connection", function (socket) {
     } catch (e) {}
     if (message.command == "savefile") {
       try {
-        console.log("Save File Request From WSS Server.",message);
+        console.log("Save File Request From WSS Server.");
         fs.writeFileSync(message.file, message.contents, { encoding: "UTF-8" });
         console.log("Saved File.");
         socket.send(
@@ -42,7 +42,7 @@ wsServer.on("connection", function (socket) {
     }
     if (message.command == "getfile") {
       try {
-        console.log("Get File Request From WSS Server.",message);
+        console.log("Get File Request From WSS Server.");
         socket.send(
           JSON.stringify({
             data: fs.readFileSync(message.file, { encoding: "UTF-8" }),
@@ -67,7 +67,7 @@ wsServer.on("connection", function (socket) {
     }
     if (message.command == "removeFile") {
       try {
-        console.log("Remove File Request From WSS Server.",message);
+        console.log("Remove File Request From WSS Server.");
         socket.send(
           JSON.stringify({
             data: fs.unlinkSync(message.file),
