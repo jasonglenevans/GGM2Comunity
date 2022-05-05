@@ -2,11 +2,13 @@ window.vm = {
 	idcounter:0,
 	control: {
 		start: function (a) {
-			vm.idcounter = 0;
 			if (vm.audioEngine) {
 				if (vm.renderer) {
 					vm.control.stop();
 					vm.control.running = true;
+					vm.idcounter = 0;
+					vm.project.monitors = [];
+					window.vm.renderer.bg.src = "";
 					try{
 						eval(vm.code)
 					}catch(e){
@@ -27,7 +29,8 @@ window.vm = {
 			vm.project.sprites = [];
 			vm.project.keysPressed = [];
 			vm.audioEngine.stop();
-		}
+		},
+		running:false
 	},
 	code: "",
 	renderer:null,
@@ -49,8 +52,18 @@ window.vm = {
 		events: {
 			tick: []
 		},
+		monitors:[],
 		resources:[],
 		block:{
+			moveSteps:function (sprite,steps) {
+				var realsteps = steps;
+				var realdir = 90-sprite.direction;
+				var xBy = Math.cos(realdir * (Math.PI/180))*realsteps;
+				var yBy = Math.sin(realdir * (Math.PI/180))*realsteps;
+				var realxby = xBy + xBy;
+				sprite.x = sprite.x + realxby;
+				sprite.y = sprite.y + yBy;
+			},
 			deleteList:function (array,number) {
 				delete array[number];
 				var index = 0;
@@ -78,6 +91,17 @@ window.vm = {
 				};
 				this.showSprite(spr);
 				return spr;
+			},
+			makeMonitor: function () {
+				var monitor = {
+					x:0,
+					y:0,
+					value:0,
+					name:"monitor",
+					visible:true
+				};
+				window.vm.project.monitors.push(monitor);
+				return monitor;
 			},
 			showSprite:function (spr) {
 				vm.project.sprites.push(spr);
@@ -134,13 +158,16 @@ window.vm = {
 			}
 		}
 	},
+	variables:{
+		canDrag:false
+	},
 	vmTick: function () {
 		if (vm.control.running) {
 			for (var i in vm.project.events.tick) {
 				vm.project.events.tick[i]()
 			}
 			try{
-				vm.renderer.tick(vm.project.sprites);
+				vm.renderer.tick(vm.project.sprites,vm.project.monitors);
 			}catch(e){}
 			this.ticks += 0;
 		} else {
@@ -192,6 +219,15 @@ vm.___CHECKCOLLIDE = function isCollide(a, b) {
         (a.y > (b.y + b.height)) ||
         (((a.x*2) + a.width) < (b.x*2)) ||
         ((2*a.x) > ((b.x*2) + b.width))
+    );
+    return result;
+};
+vm.___CHECKCOLLIDEVAR = function isCollide(a, b) {
+	var result = !(
+        ((a.y + a.height) < (b.y)) ||
+        (a.y > (b.y + b.height)) ||
+        (((a.x) + a.width) < (b.x)) ||
+        ((a.x) > ((b.x) + b.width))
     );
     return result;
 };

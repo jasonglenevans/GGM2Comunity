@@ -1,6 +1,44 @@
 Blockly.defineBlocksWithJsonArray([
 //sprites
 {
+  "type": "gvbvdxx_game_sprites_move",
+  "message0": "%1 Move %2 Steps",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_value",
+      "name": "name",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprites_bg",
+  "message0": "set background image to data url %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "gvbvdxx_game_sprites_show",
   "message0": "show %1",
   "args0": [
@@ -341,7 +379,7 @@ Blockly.JavaScript['gvbvdxx_game_sprites_set_img'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_image = Blockly.JavaScript.valueToCode(block, 'image', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite+'.image = '+value_image+';\n';
+  var code = variable_sprite+'.image = '+value_image+';\n'+variable_sprite+'.width = '+variable_sprite+'.image.width;\n'+variable_sprite+'.height = '+variable_sprite+'.image.height;\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_game_sprites_set_position'] = function(block) {
@@ -431,5 +469,21 @@ Blockly.JavaScript['gvbvdxx_game_sprites_show'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble JavaScript into code variable.
   var code = 'vm.project.block.showSprite('+variable_sprite+');\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_bg'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  if (value_name == '') {
+	  value_name = '""';
+  }
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'window.vm.renderer.bg.src = '+value_name+';\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_move'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'vm.project.block.moveSteps('+variable_sprite+','+value_name+');\n';
   return code;
 };

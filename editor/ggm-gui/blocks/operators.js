@@ -187,6 +187,10 @@ Blockly.defineBlocksWithJsonArray([
       "name": "maths",
       "options": [
         [
+          "round",
+          "round"
+        ],
+        [
           "abs",
           "abs"
         ],

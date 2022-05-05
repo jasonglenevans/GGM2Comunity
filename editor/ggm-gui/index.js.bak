@@ -232,7 +232,7 @@ function load() {
 document.getElementById("gameFileUpload").onchange = function () {
 	var reader = new FileReader();
 	reader.onload = function () {
-		gui.jsonTextToEditor(reader.result);
+		gui.jsonTextToEditor(reader.result,"file");
 		document.getElementById("gameFileUpload").value = "";
 	};
 	if (document.getElementById("gameFileUpload").files[0]) {
@@ -452,3 +452,13 @@ window.toolboxManagement = class {
 		this.vm = window.vm;
 	}
 };
+
+//variables
+vm.variables.canDrag = true; //make it possible to drag
+
+
+/*var vardiv = variables.newVarDiv(0,0,{dragable:true});
+vardiv.inside.style.height = 32+"px";
+vardiv.inside.style.width = 32+"px";
+vardiv.inside.style.background = "black";
+document.body.appendChild(vardiv.inside);*/

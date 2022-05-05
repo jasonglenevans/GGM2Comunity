@@ -452,3 +452,10 @@ window.toolboxManagement = class {
 		this.vm = window.vm;
 	}
 };
+
+
+/*var vardiv = variables.newVarDiv(0,0,{dragable:true});
+vardiv.inside.style.height = 32+"px";
+vardiv.inside.style.width = 32+"px";
+vardiv.inside.style.background = "black";
+document.body.appendChild(vardiv.inside);*/

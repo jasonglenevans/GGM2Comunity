@@ -12,6 +12,7 @@ var toolboxXML = `
 			<block type="gvbvdxx_game_sprites_empty"></block>
 			<block type="gvbvdxx_game_sprites_set_img"></block>
 			${blockSeparator}
+			<block type="gvbvdxx_game_sprites_move"></block>
 			<block type="gvbvdxx_game_sprites_set_position"></block>
 			<block type="gvbvdxx_game_sprites_size"></block>
 			<block type="gvbvdxx_game_sprites_flip"></block>
@@ -21,6 +22,8 @@ var toolboxXML = `
 			<block type="gvbvdxx_game_sprites_hide"></block>
 			${blockSeparator}
 			<block type="gvbvdxx_game_sprite_get"></block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_sprites_bg"></block>
 		</category>
 		<category colour="#1971c2" name="Events">
 			<block type="gvbvdxx_game_ontick"></block>
@@ -88,6 +91,13 @@ var toolboxXML = `
 		</category>
 		<category colour="#009acd" name="Other">
 			<block type="gvbvdxx_group"></block>
+		</category>
+		<category colour="#adb5bd" name="Monitors">
+			<block type="gvbvdxx_game_var_make"></block>
+			<block type="gvbvdxx_game_var_pos"></block>
+			<block type="gvbvdxx_game_var_set"></block>
+			<block type="gvbvdxx_game_var_set_text"></block>
+			<block type="gvbvdxx_game_var_visible"></block>
 		</category>
 `;
 document.getElementById("toolbox").innerHTML = toolboxXML;

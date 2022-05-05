@@ -263,9 +263,11 @@ padding: 10px;
 					document.getElementById('gameArea').setAttribute('class','');
 					document.getElementById('gameScreen').setAttribute('style','image-rendering: pixelated;');
 					document.getElementById('files').hidden = false;
+					document.exitFullscreen();
 				} else {
 					document.getElementById('gameArea').setAttribute('class','fullscreenGame');
 					document.getElementById('gameScreen').setAttribute('style','z-index:100000000;width:88.5%;height:calc(100vh - 18px);image-rendering:pixelated;');
+					document.getElementById('gameArea').requestFullscreen();
 					document.getElementById('files').hidden = true;
 				}
 				" style="border:none;background-color:#e9ecef;cursor:pointer;">Toggle Fullscreen</button>
@@ -359,6 +361,7 @@ padding: 10px;
 		<script src="ggm-vm/index.js?n=1"></script>
 		<script src="ggm-vm/renderer.js?n=1"></script>
 		<script src="ggm-vm/audio.js?n=1"></script>
+		<!--<script src="ggm-vm/variables.js?n=1"></script>-->
 		<script src="ggm-gui/theme.js?n=1"></script>
 		<script src="ggm-gui/index.js?n=1"></script>
 		<script src="ggm-gui/costom_manager.js?n=1"></script>
