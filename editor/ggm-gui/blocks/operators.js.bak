@@ -285,7 +285,10 @@ Blockly.JavaScript['gvbvdxx_operators_maths'] = function(block) {
 	  value_name = "(0)";
   }
   // TODO: Assemble JavaScript into code variable.
-  var code = 'Math.'+dropdown_maths+value_name;
+  var code = 'Math.'+dropdown_maths+"("+value_name+")";
+  if (dropdown_maths == "sin" || dropdown_maths == "cos") {
+	  code = 'vm.project.'+dropdown_maths+"("+value_name+")";
+  }
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

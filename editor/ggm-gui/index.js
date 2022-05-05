@@ -164,6 +164,7 @@ vm.console.log = function (text) {
 }
 vm.console.error = function (text) {
 	document.getElementById('console').innerHTML += "Error:"+text+"<br>";
+	vm.stop();
 }
 vm.console.clear = function (text) {
 	document.getElementById('console').innerHTML = "";

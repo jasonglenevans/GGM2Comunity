@@ -56,15 +56,18 @@ window.vm = {
 		resources:[],
 		block:{
 			moveSteps:function (sprite,steps) {
+				try{
 				var realsteps = steps;
 				var realdir = 90-sprite.direction;
 				var xBy = Math.cos(realdir * (Math.PI/180))*realsteps;
 				var yBy = Math.sin(realdir * (Math.PI/180))*realsteps;
 				var realxby = xBy + xBy;
 				sprite.x = sprite.x + realxby;
-				sprite.y = sprite.y + yBy;
+				sprite.y = sprite.y + (yBy+yBy);
+				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			deleteList:function (array,number) {
+				try{
 				delete array[number];
 				var index = 0;
 				var genaratedArray = [];
@@ -75,8 +78,10 @@ window.vm = {
 					index += 1;
 				}
 				return genaratedArray;
+				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			makeSprite:function () {
+				try{
 				vm.idcounter += 1;
 				var spr = {
 					direction:90,
@@ -91,8 +96,10 @@ window.vm = {
 				};
 				this.showSprite(spr);
 				return spr;
+				}catch(e){}
 			},
 			makeMonitor: function () {
+				try{
 				var monitor = {
 					x:0,
 					y:0,
@@ -102,28 +109,43 @@ window.vm = {
 				};
 				window.vm.project.monitors.push(monitor);
 				return monitor;
+				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			showSprite:function (spr) {
+				try{
 				vm.project.sprites.push(spr);
+				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			hideSprite:function (spr) {
+				try{
 				var i = vm.project.sprites.indexOf(spr);
 				if (i > -1) {
 					vm.project.sprites.splice(i, 1); // 2nd parameter means remove one item only
 				}
+				}catch(e){}
+			},
+			cos:function (number) {
+				return Math.cos((90-number)* (Math.PI/180));
+			},
+			sin:function (number) {
+				return Math.sin((90-number)* (Math.PI/180));
 			},
 			getMoseData:function () {
+				try{
 				return {
 					x:vm.project.mouseX,
 					y:vm.project.mouseY,
 					down:vm.project.mouseDown
 				};
+				}catch(e){}
 			},
 			dataToImg:function (dataURI) {
+				try{
 				var img = document.createElement("img");
 				img.src = dataURI;
 				img.setAttribute("style","image-rendering: pixelated;");
 				return img;
+		}catch(e){}
 			},
 			isTouching: function (sprite1,sprite2, mode) {
 				/*if (sp1.x > sp2.x) {
@@ -140,21 +162,27 @@ window.vm = {
 				);
 				sp1.x += sp1.width/devideNumX;
 				return res;*/
+				try{
 				return vm.___CHECKCOLLIDE(sprite1,sprite2);
+				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			getKeyPressed: function (keyname) {
+				try{
 				if (vm.project.keysPressed[keyname]) {
 					return true;
 				} else {
 					return false;
 				}
+				}catch(e){}
 			},
 			wait:function (secs,callback) {
+				try{
 				setTimeout(() => {
 					if (window.vm.control.running) {
 						callback();
 					}
 				},secs*1000); /*1000ms = 1 second*/
+				}catch(e){}
 			}
 		}
 	},
@@ -164,7 +192,9 @@ window.vm = {
 	vmTick: function () {
 		if (vm.control.running) {
 			for (var i in vm.project.events.tick) {
-				vm.project.events.tick[i]()
+				try{
+					vm.project.events.tick[i]()
+				}catch(e){vm.console.error(e);}
 			}
 			try{
 				vm.renderer.tick(vm.project.sprites,vm.project.monitors);
@@ -194,6 +224,7 @@ window.vm = {
 		},
 		error: function (text) {
 			console.error("[vm - program]: " + text);
+			vm.stop();
 		},
 		clear: function (text) {
 			console.clear();
