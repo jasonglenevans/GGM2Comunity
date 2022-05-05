@@ -73,12 +73,15 @@
 		left:0;
 		width:100vw;
 		height:100vw;
-		background-color:black;
+		background-color:#339af0;
 		opacity:0.5;
 		color:white;
 	}
 	#loadingText {
-		margin-top:30%;
+		position:fixed;
+		top:50%;
+		left:50%;
+		margin-left:-140px;
 	}
 	.fullscreenGame {
 		top:0;
@@ -101,8 +104,14 @@
 </div>
 <br><br><br>
 
-<center>
+<center id="app" hidden>
 <h1 id="title"></h1>
+<div id="clicktostart" onclick="start()" class="gameArea" style="cursor:pointer;">
+	<center>
+		<br><br><br><br><br><br><br><br><br>
+		<h1 style="color:white; margin-top:;">Please Click To Start</h1>
+	</center>
+</div>
 <div id="gameArea" class="gameArea" hidden>
 <div style="background-color:#e9ecef;width:680px;height:20px;" id="controlBar">
 <button class="controlButton left" onclick="vm.start();">Start</button>
@@ -124,7 +133,6 @@ if (document.getElementById('gameArea').getAttribute('class') == 'fullscreenGame
 <canvas id="gameScreen" width=600 height=360></canvas>
 </center>
 </div>
-<div id="loadingScreen"><center><h1 id="loadingText">Project is loading...</h1></center></div>
 <br>
 <button class="buttonBlue" onclick="editproject()">Edit project</button>
 <br>
@@ -139,6 +147,7 @@ if (document.getElementById('gameArea').getAttribute('class') == 'fullscreenGame
 <script src="editor/ggm-vm/index.js?n=1"></script>
 <script src="editor/ggm-vm/renderer.js?n=1"></script>
 <script src="editor/ggm-vm/audio.js?n=1"></script>
+<div id="loadingScreen"><center><h1 id="loadingText">Project is loading...</h1></center></div>
 <script>
 renderer.canvas = document.getElementById("gameScreen");
 vm.attachAudioEngine(audioEngine);
@@ -168,8 +177,9 @@ if (id) {
 		var json = JSON.parse(data);
 		vm.code = json.code;
 		document.getElementById("loadingScreen").hidden = true;
+		document.getElementById("app").hidden = false;
 		document.getElementById("discription").innerHTML = json.dis;
-		window.vm.project.resources = json.files;
+		readFiles(json.files);
 		document.getElementById("title").innerHTML = json.title;
 		document.getElementById("gameScreen").onmousemove = function (event) {
 			var pos = getMousePos(document.getElementById("gameScreen"), event);// get adjusted coordinates as above
@@ -205,7 +215,11 @@ if (id) {
 } else {
 	document.getElementById("loadingText").innerHTML = "ID needs to be in the url.";
 }
-document.getElementById("gameArea").hidden = false;
+function start() {
+	vm.start();
+	document.getElementById("clicktostart").hidden = true;
+	document.getElementById("gameArea").hidden = false;
+}
 function editproject() {
 	var a = document.createElement("a");
 	a.href = "editor/index.html?id="+id;
