@@ -14,17 +14,18 @@ window.gui = {
 			workspace.updateToolbox("<xml>"+toolboxHTML+"</xml>")
 		}
 	},
-	editorToJsonText:function () {
+	editorToJsonText:function (type) {
 		return JSON.stringify({
 			blocklyXML:Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)),
 			files:fileResourcesArray,
 			title:document.getElementById("gameTitle").value,
 			thumb:document.getElementById("gameScreen").toDataURL(),
 			shared:window.shared,
-			dis:document.getElementById("discription").value
+			dis:document.getElementById("discription").value,
+			code:vm.code
 		});
 	},
-	jsonTextToEditor:function (JsonText) {
+	jsonTextToEditor:function (JsonText,type) {
 		clearResources();
 		var JsonTextParsed = JSON.parse(JsonText);
 		var i = 0;
@@ -35,8 +36,12 @@ window.gui = {
 		workspace.clear();
 		document.getElementById("gameTitle").value = JsonTextParsed.title
 		Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(JsonTextParsed.blocklyXML),workspace);
-		if (JsonTextParsed.shared) {
-			window.shared = JsonTextParsed.shared;
+		if (type == "file") {
+			
+		} else {
+			if (JsonTextParsed.shared) {
+				window.shared = JsonTextParsed.shared;
+			}
 		}
 		document.getElementById("discription").value = JsonTextParsed.dis;
 	}
@@ -195,6 +200,7 @@ function readFileAsResource(data,name,type) {
 	files.appendChild(div);
 	window.fileResources[name] = ({data:data,name:name,type:type});
 	window.fileResourcesArray.push({data:data,name:name,type:type});
+	window.vm.project.resources = fileResources;
 }
 resoureupload.onchange = function () {
 	var reader = new FileReader();
@@ -356,7 +362,6 @@ Blockly.alert = (function(message, callback) {
 	document.getElementById("dialogButtonCancel").hidden = true;
 	
 	dialogOptions.buttons.ok.onclick = function () {
-		app.hidden = false;
 		try {callback();} catch(e) {}
 		dialogBackground.style.display = "none";
 		dialogBox.style.display = "none";
@@ -379,7 +384,6 @@ Blockly.confirm = (function(message, callback) {
 	dialogOptions.name.innerHTML = message;
 	
 	dialogOptions.buttons.ok.onclick = function () {
-		app.hidden = false;
 		try {callback(true);} catch(e) {}
 		dialogBackground.style.display = "none";
 		dialogBox.style.display = "none";

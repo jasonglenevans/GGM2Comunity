@@ -64,6 +64,7 @@ window.vm = {
 				return genaratedArray;
 			},
 			makeSprite:function () {
+				vm.idcounter += 1;
 				var spr = {
 					direction:90,
 					x:0,
@@ -72,7 +73,7 @@ window.vm = {
 					height:32,
 					image:null,
 					flip:"none",
-					id:Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000)+Math.round(Math.random()*10000),
+					id:vm.idcounter,
 					gost:0
 				};
 				this.showSprite(spr);

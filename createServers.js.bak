@@ -31,6 +31,7 @@ if (params.get('offline')) {
 	} else {
 	var loadingText = "Making New Project...";
 	setTimeout(() => {
+	servers.log("creating project...");
 	servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 		projectId = Number(data)+1
 		if (Number(data)) {
@@ -42,6 +43,7 @@ if (params.get('offline')) {
 					console.log("saved new project data.");
 					window.location.replace(window.location.href+"?id="+projectId);
 					document.getElementById("loadingscreen").hidden = true
+					servers.log("created project.");
 				});
 			});
 		} else {

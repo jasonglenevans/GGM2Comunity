@@ -14,17 +14,18 @@ window.gui = {
 			workspace.updateToolbox("<xml>"+toolboxHTML+"</xml>")
 		}
 	},
-	editorToJsonText:function () {
+	editorToJsonText:function (type) {
 		return JSON.stringify({
 			blocklyXML:Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace)),
 			files:fileResourcesArray,
 			title:document.getElementById("gameTitle").value,
 			thumb:document.getElementById("gameScreen").toDataURL(),
 			shared:window.shared,
-			dis:document.getElementById("discription").value
+			dis:document.getElementById("discription").value,
+			code:vm.code
 		});
 	},
-	jsonTextToEditor:function (JsonText) {
+	jsonTextToEditor:function (JsonText,type) {
 		clearResources();
 		var JsonTextParsed = JSON.parse(JsonText);
 		var i = 0;
@@ -35,8 +36,12 @@ window.gui = {
 		workspace.clear();
 		document.getElementById("gameTitle").value = JsonTextParsed.title
 		Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(JsonTextParsed.blocklyXML),workspace);
-		if (JsonTextParsed.shared) {
-			window.shared = JsonTextParsed.shared;
+		if (type == "file") {
+			
+		} else {
+			if (JsonTextParsed.shared) {
+				window.shared = JsonTextParsed.shared;
+			}
 		}
 		document.getElementById("discription").value = JsonTextParsed.dis;
 	}
@@ -195,6 +200,7 @@ function readFileAsResource(data,name,type) {
 	files.appendChild(div);
 	window.fileResources[name] = ({data:data,name:name,type:type});
 	window.fileResourcesArray.push({data:data,name:name,type:type});
+	window.vm.project.resources = fileResources;
 }
 resoureupload.onchange = function () {
 	var reader = new FileReader();
@@ -226,7 +232,7 @@ function load() {
 document.getElementById("gameFileUpload").onchange = function () {
 	var reader = new FileReader();
 	reader.onload = function () {
-		gui.jsonTextToEditor(reader.result);
+		gui.jsonTextToEditor(reader.result,"file");
 		document.getElementById("gameFileUpload").value = "";
 	};
 	if (document.getElementById("gameFileUpload").files[0]) {

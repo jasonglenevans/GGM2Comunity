@@ -50,6 +50,7 @@ window.vm = {
 		events: {
 			tick: []
 		},
+		resources:[],
 		block:{
 			deleteList:function (array,number) {
 				delete array[number];

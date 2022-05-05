@@ -10,7 +10,7 @@ console.log = function (a,b) {
     msg2 = JSON.stringify(b);
   }catch(e){}
   if (msg2) {
-    filelog += "\n"+a+msg2;
+    filelog += "\n"+a/*+msg2*/;
   } else {
     filelog += "\n"+a;
   }

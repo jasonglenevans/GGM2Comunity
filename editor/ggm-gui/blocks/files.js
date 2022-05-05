@@ -39,7 +39,7 @@ Blockly.JavaScript['gvbvdxx_files_dataurl'] = function(block) {
   var text_name = block.getFieldValue('name');
   // TODO: Assemble JavaScript into code variable.
   try {
-	var code = '"'+window.fileResources[text_name].data+'"';
+	var code = 'window.vm.project.resources["'+text_name.replaceAll('"','\\"')+'"].data';
 	block.setWarningText(null);
   }catch(e){
 	  block.setWarningText("File Does Not Exist!");

@@ -90,3 +90,9 @@ if (params.get('offline')) {
 	}
 	updateShareText();
 }
+
+function viewProjectPage() {
+	var a = document.createElement("a");
+	a.href = "../player.html?id="+id;
+	a.click();
+}
