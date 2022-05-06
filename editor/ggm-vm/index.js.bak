@@ -92,7 +92,7 @@ window.vm = {
 					image:null,
 					flip:"none",
 					id:vm.idcounter,
-					gost:0
+					ghost:0
 				};
 				this.showSprite(spr);
 				return spr;
@@ -113,7 +113,8 @@ window.vm = {
 			},
 			showSprite:function (spr) {
 				try{
-				vm.project.sprites.push(spr);
+					this.hideSprite(spr); //ensure there is only one sprite when showing again.
+					vm.project.sprites.push(spr);
 				}catch(e){vm.console.error("Error in script:"+e);}
 			},
 			hideSprite:function (spr) {
@@ -125,10 +126,14 @@ window.vm = {
 				}catch(e){}
 			},
 			cos:function (number) {
+				try{
 				return Math.cos((90-number)* (Math.PI/180));
+				}catch(e){vm.console.error(e);}
 			},
 			sin:function (number) {
+				try{
 				return Math.sin((90-number)* (Math.PI/180));
+				}catch(e){vm.console.error(e);}
 			},
 			getMoseData:function () {
 				try{

@@ -1,4 +1,4 @@
-window.serverId = "spectacular-brave-artichoke"
+window.serverId = "neon-disco-straw"
 
 window.servers = {
 	wss:"wss://"+window.serverId+".glitch.me",

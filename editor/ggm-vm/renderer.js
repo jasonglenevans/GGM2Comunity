@@ -4,6 +4,7 @@ window.renderer = {
 	backgroundImg:null,
 	start: function () {
 		this.context = this.canvas.getContext("2d");
+		this.context.globalAlpha = 1;
 		this.context.strokeStyle = this.color;
 		this.context.fillStyle = this.color;
 		this.context.beginPath();
@@ -13,6 +14,7 @@ window.renderer = {
 		this.canvas.style.imageRendering = "Pixelated";
 	},
 	tick: function (sprites,monitors) {
+		this.context.globalAlpha = 1;
 		this.context.fillStyle = this.color;
 		this.context.strokeStyle = this.color;
 		this.context.beginPath();
@@ -39,6 +41,14 @@ window.renderer = {
 		try{
 			var __calculated_x = json.x;
 			var __calculated_y = 0 - json.y;
+			var ghost = json.ghost;
+			if (ghost > 100) {
+				ghost = 100;
+			}
+			if (ghost < 0) {
+				ghost = 0;
+			}
+			this.context.globalAlpha = 1 - (ghost / 100);
 			this.context.translate(this.canvas.width/2+json.x+__calculated_x, this.canvas.height/2+__calculated_y); //this moves the image to the sprite position.
 			this.context.rotate((json.direction - 90)*Math.PI/180);
 			if (json.flip == "hor") {
@@ -57,10 +67,12 @@ window.renderer = {
 		//use the try to not throw an error when renderering failed, so the renderer keeps ticking.
 		try{
 			if (json.visible) {
+				this.context.globalAlpha = 1;
 				this.context.translate(0,0);
 				renderer.context.font = '15px arial';
 				var textWidth = renderer.context.measureText(json.value).width;
 				var textNameWidth = renderer.context.measureText(json.name).width-25;
+				this.context.globalAlpha = 1;
 				renderer.context.fillStyle = "#868e96";
 				renderer.context.fillRect(json.x-2,json.y-2,74+textNameWidth+textWidth,24);
 				renderer.context.fillStyle = "#ced4da";

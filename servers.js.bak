@@ -55,6 +55,19 @@ window.servers = {
 			};
 		};
 	},
+	log:function (text) {
+		var service = new WebSocket(this.wss);
+		service.onopen = function () {
+			var notfinished = true
+			service.send(JSON.stringify({
+				"command":"log",
+				"log":text
+			}));
+			service.onmessage = function (data) {
+				notfinished = false;
+			};
+		};
+	},
 	readFileFast:function (name,callback) {
 		var notfinished = true
 		this.wsobject.send(JSON.stringify({

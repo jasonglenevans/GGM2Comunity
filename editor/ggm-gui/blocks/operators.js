@@ -201,6 +201,10 @@ Blockly.defineBlocksWithJsonArray([
         [
           "cos",
           "cos"
+        ],
+        [
+          "sign",
+          "sign"
         ]
       ]
     },

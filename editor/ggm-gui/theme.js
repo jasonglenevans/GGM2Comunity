@@ -189,6 +189,7 @@ class CustomRenderer extends Blockly.blockRendering.Renderer {
 	  var a = new CustomConstantsProvider();
 	  a.FULL_BLOCK_FIELDS = false;
 	  a.NO_PADDING = 0;
+	  a.ADD_START_HATS = true;
     return a;
   }
 };

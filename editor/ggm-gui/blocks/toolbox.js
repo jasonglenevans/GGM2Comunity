@@ -14,6 +14,7 @@ var toolboxXML = `
 			${blockSeparator}
 			<block type="gvbvdxx_game_sprites_move"></block>
 			<block type="gvbvdxx_game_sprites_set_position"></block>
+			<block type="gvbvdxx_game_sprites_ghost"></block>
 			<block type="gvbvdxx_game_sprites_size"></block>
 			<block type="gvbvdxx_game_sprites_flip"></block>
 			<block type="gvbvdxx_game_sprites_direction"></block>
