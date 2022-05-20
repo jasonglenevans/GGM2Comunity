@@ -15,3 +15,4 @@ if (false) {
 		}
 	});
 }
+window.location.replace("https://gvbvdxxgamemaker2comunity.createaforum.com/");

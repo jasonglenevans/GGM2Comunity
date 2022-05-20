@@ -2,7 +2,7 @@ var info = {};
 if (window.errordir) {}else{
 	window.errordir = "";
 }
-if (true) {
+if (false) {
 	console.log("creator is here, ignoring errors.");
 } else {
 	servers.readFile("ggm-info.json",(data) => {

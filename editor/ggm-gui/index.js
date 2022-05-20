@@ -133,7 +133,7 @@ document.getElementById("gameScreen").onmousedown = function (event) {
 	event.preventDefault();
 	vm.setMouseDown(true);
 }
-document.getElementById("gameScreen").onmouseup = function (event) {
+document.body.onmouseup = function (event) {
 	event.preventDefault();
 	vm.setMouseDown(false);
 }

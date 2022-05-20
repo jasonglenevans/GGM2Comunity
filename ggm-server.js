@@ -21,6 +21,9 @@ wsServer.on("connection", function (socket) {
     } catch (e) {}
     if (message.command == "savefile") {
       try {
+        try{
+          fs.unlinkSync(message.file);
+        }catch(e){} 
         console.log("Save File Request From WSS Server.");
         fs.writeFileSync(message.file, message.contents, { encoding: "UTF-8" });
         console.log("Saved File.");

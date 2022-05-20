@@ -121,10 +121,12 @@ if (document.getElementById('gameArea').getAttribute('class') == 'fullscreenGame
 	document.getElementById('gameArea').setAttribute('class','gameArea');
 	document.getElementById('gameScreen').setAttribute('style','image-rendering: pixelated;');
 	document.getElementById('controlBar').setAttribute('style','background-color:#e9ecef;width:680px;height:20px;');
+	document.exitFullscreen();
 	document.getElementById('files').hidden = false;
 } else {
 	document.getElementById('gameArea').setAttribute('class','fullscreenGame');
 	document.getElementById('controlBar').setAttribute('style','background-color:#e9ecef;width:100%;height:20px;');
+	document.getElementById('gameArea').requestFullscreen();
 	document.getElementById('gameScreen').setAttribute('style','z-index:100000000;width:88.5%;height:calc(100vh - 18px);image-rendering:pixelated;');
 	document.getElementById('files').hidden = true;
 }" class="controlButton left">Toggle Fullscreen</button>
@@ -185,7 +187,7 @@ if (id) {
 			var pos = getMousePos(document.getElementById("gameScreen"), event);// get adjusted coordinates as above
 			var x = Math.round(pos.x/1)-(document.getElementById("gameScreen").width/2)/2;
 			var y = Math.round(pos.y*-1)+(document.getElementById("gameScreen").height/2);
-			
+			event.preventDefault();
 			vm.setMousePos({
 				x:x,
 				y:y
@@ -204,12 +206,14 @@ if (id) {
 				key:event.key,
 				down:true
 			});
+			event.preventDefault();
 		}
 		document.body.onkeyup = function (event) {
 			vm.simulateKey({
 				key:event.key,
 				down:false
 			});
+			event.preventDefault();
 		}
 	})
 } else {

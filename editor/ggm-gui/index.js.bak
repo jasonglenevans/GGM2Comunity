@@ -129,7 +129,7 @@ document.getElementById("gameScreen").onmousemove = function (event) {
 		y:y
 	});
 }
-document.getElementById("gameScreen").onmousedown = function (event) {
+document.body.onmousedown = function (event) {
 	event.preventDefault();
 	vm.setMouseDown(true);
 }
@@ -164,6 +164,7 @@ vm.console.log = function (text) {
 }
 vm.console.error = function (text) {
 	document.getElementById('console').innerHTML += "Error:"+text+"<br>";
+	vm.stop();
 }
 vm.console.clear = function (text) {
 	document.getElementById('console').innerHTML = "";

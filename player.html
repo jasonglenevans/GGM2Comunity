@@ -187,7 +187,7 @@ if (id) {
 			var pos = getMousePos(document.getElementById("gameScreen"), event);// get adjusted coordinates as above
 			var x = Math.round(pos.x/1)-(document.getElementById("gameScreen").width/2)/2;
 			var y = Math.round(pos.y*-1)+(document.getElementById("gameScreen").height/2);
-			
+			event.preventDefault();
 			vm.setMousePos({
 				x:x,
 				y:y
@@ -197,7 +197,7 @@ if (id) {
 			event.preventDefault();
 			vm.setMouseDown(true);
 		}
-		document.getElementById("gameScreen").onmouseup = function (event) {
+		document.body.onmouseup = function (event) {
 			event.preventDefault();
 			vm.setMouseDown(false);
 		}
@@ -206,12 +206,14 @@ if (id) {
 				key:event.key,
 				down:true
 			});
+			event.preventDefault();
 		}
 		document.body.onkeyup = function (event) {
 			vm.simulateKey({
 				key:event.key,
 				down:false
 			});
+			event.preventDefault();
 		}
 	})
 } else {
