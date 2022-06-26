@@ -3,8 +3,9 @@ let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
+var forceHideOptions = false;
 setInterval(() => {
-	if (params.get('offline')) {
+	if (params.get('offline') && !(forceHideOptions)) {
 		document.getElementById("online_options").hidden = true;
 	} else {
 		document.getElementById("online_options").hidden = false;
@@ -46,6 +47,7 @@ if (params.get('offline')) {
 				document.getElementById("loadingscreen").hidden = false
 				servers.saveFile("ggm-community-accountid-project-"+projectId+".ggm2gserver",gui.editorToJsonText(),function () {
 					console.log("saved new project data.");
+					window.onbeforeunload = null;
 					window.location.replace(window.location.href+"?id="+projectId);
 					document.getElementById("loadingscreen").hidden = true
 					servers.log("created project.");

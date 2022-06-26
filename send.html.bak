@@ -42,7 +42,7 @@
 <body>
 
 <div id="main_menu">
-<a href="./index.html"><img width=100 height=48 style="float:left;" src="./logo.png"></a>
+<a href="./index.html"><img width=100 height=48 style="float:left;" src="editor/ggm-gui/logo.svg"></a>
 <a href="editor/index.html"><p class="main_menu_item">Create</p></a>
 <a href="explore.html"><p class="main_menu_item">Explore</p></a>
 <a href="send.html"><p class="main_menu_item">Send</p></a>
@@ -52,10 +52,12 @@
 
 <h1>Send</h1>
 <p>Send a message to me</p>
-<input id="title" value="Title"><input id="username" value="Username"><br><br>
+<input id="title" placeholder="Title/Name of message"><input id="username" placeholder="Username (not your real name)"><br><br>
 <textarea id="message" style="
 	height: 224px;
-    width: 381px;">Message</textarea><br>
+    width: 381px;" placeholder="Write Something here,
+do not share or attempt to send passwords,
+if you just did, go change them right now!"></textarea><br>
 <button onclick="send()" id="send"></button>
 <h1>Messages:</h1>
 <div id="messages">
