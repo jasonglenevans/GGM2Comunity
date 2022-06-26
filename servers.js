@@ -1,5 +1,8 @@
 window.serverId = "neon-disco-straw"
-
+var PREVFETCH = window.fetch
+/*window.fetch = async function (a,b,c,d) {
+    return await fetch(a,b,c,d);
+}*/
 window.servers = {
 	wss:"wss://"+window.serverId+".glitch.me",
 	wsobject:new WebSocket("wss://"+window.serverId+".glitch.me"),
