@@ -114,8 +114,9 @@ function serverLoad() {
 		getProject()
 	});
 }
-servers.wsobject.onopen = serverLoad;
-
+//servers.wsobject.onopen = serverLoad;
+//don't wait for the ws server to open, we replaced it with firebase!
+serverLoad();
 </script>
 <script src="info.js?n=1"></script>
 
