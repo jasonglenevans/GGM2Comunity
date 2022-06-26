@@ -1,0 +1,98 @@
+window.renderer = {
+	canvas: null,
+	bg: document.createElement("img"),
+	backgroundImg:null,
+	start: function () {
+		this.context = this.canvas.getContext("2d");
+		this.context.globalAlpha = 1;
+		this.context.strokeStyle = this.color;
+		this.context.fillStyle = this.color;
+		this.context.beginPath();
+		this.context.fillRect(0, 0, this.canvas.width + 2, this.canvas.height + 2);
+		this.context.stroke();
+		this.test=0;
+		this.canvas.style.imageRendering = "Pixelated";
+	},
+	tick: function (sprites,monitors) {
+		this.context.globalAlpha = 1;
+		this.context.fillStyle = this.color;
+		this.context.strokeStyle = this.color;
+		this.context.beginPath();
+		this.context.fillRect(0, 0, this.canvas.width + 2, this.canvas.height + 2);
+		this.context.stroke();
+		this.context.webkitImageSmoothingEnabled = false;
+		this.context.mozImageSmoothingEnabled = false;
+		this.context.imageSmoothingEnabled = false;
+		try{
+			this.context.drawImage(this.bg,0,0,this.canvas.width,this.canvas.height);
+		}catch(e){}
+		for (var i in sprites) {
+			sprites[i];
+			this._drawSprite(sprites[i]);
+		}
+		for (var i in monitors) {
+			monitors[i];
+			this._drawMonitor(monitors[i]);
+		}
+	},
+	_drawSprite: function (json) {
+		this.context.save();
+		//use the try to not throw an error when renderering failed, so the renderer keeps ticking.
+		try{
+			var __calculated_x = json.x;
+			var __calculated_y = 0 - json.y;
+			var ghost = json.ghost;
+			if (ghost > 100) {
+				ghost = 100;
+			}
+			if (ghost < 0) {
+				ghost = 0;
+			}
+			this.context.globalAlpha = 1 - (ghost / 100);
+			//this.context.translate(this.canvas.width/2+json.x+__calculated_x, this.canvas.height/2+__calculated_y);
+			this.context.translate(this.canvas.width/2+json.x+__calculated_x, this.canvas.height/2+__calculated_y); //this moves the image to the sprite position.
+			this.context.rotate((json.direction - 90)*Math.PI/180);
+			if (json.flip == "hor") {
+				this.context.scale(-1,1);
+			} else {
+				if (json.flip == "ver") {
+					this.context.scale(1,-1);
+				}
+			}
+			this.context.drawImage(json.image, json.width/-2, json.height/-2, json.width, json.height); //draw the image and offset it so it rotates in the center.
+		}catch(e){}
+		this.context.restore();
+	},
+	_drawMonitor: function (json) {
+		this.context.save();
+		//use the try to not throw an error when renderering failed, so the renderer keeps ticking.
+		try{
+			if (json.visible) {
+				this.context.globalAlpha = 1;
+				this.context.translate(0,0);
+				renderer.context.font = '15px arial';
+				var textWidth = renderer.context.measureText(json.value).width;
+				var textNameWidth = renderer.context.measureText(json.name).width-25;
+				this.context.globalAlpha = 1;
+				renderer.context.fillStyle = "#868e96";
+				renderer.context.fillRect(json.x-2,json.y-2,74+textNameWidth+textWidth,24);
+				renderer.context.fillStyle = "#ced4da";
+				renderer.context.fillRect(json.x,json.y,70+textNameWidth+textWidth,20);	
+				renderer.context.fillStyle = "#ff8c00";
+				renderer.context.fillRect(json.x+60,json.y+3,5+textNameWidth+textWidth,15);
+				renderer.context.fillStyle = "white";
+				renderer.context.fillText(json.value, json.x+60,json.y + 15);
+				renderer.context.fillStyle = "black";
+				renderer.context.fillText(json.name, json.x + 6,json.y + 15);
+				return {
+					width:74+textNameWidth+textWidth,
+					height:24,
+					x:json.x,
+					y:json.y
+				};
+			}
+		}catch(e){console.error(e);}
+		this.context.restore();
+	},
+	color:"#ffffff"
+}

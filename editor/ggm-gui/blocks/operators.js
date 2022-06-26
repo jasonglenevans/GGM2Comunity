@@ -222,6 +222,66 @@ Blockly.defineBlocksWithJsonArray([
   "colour": BlockColors["operators"],
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_operators_not",
+  "message0": "Not %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": "Boolean"
+    }
+  ],
+  "output": null,
+  "inputsInline": true,
+  "colour": BlockColors["operators"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_operators_or",
+  "message0": "%1 or %2 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "a"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "b"
+    }
+  ],
+  "inputsInline": true,
+  "output": null,
+  "colour": BlockColors["operators"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_operators_and",
+  "message0": "%1 and %2 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "a"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "b"
+    }
+  ],
+  "inputsInline": true,
+  "output": null,
+  "colour": BlockColors["operators"],
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);
 Blockly.JavaScript['gvbvdxx_operators_true_false'] = function(block) {
@@ -261,7 +321,7 @@ Blockly.JavaScript['gvbvdxx_operators_color'] = function(block) {
 Blockly.JavaScript['gvbvdxx_operators_text'] = function(block) {
   var text = block.getFieldValue('text');
   // TODO: Assemble JavaScript into code variable.
-  var code = '"'+text.replaceAll("\"","\\\"")+'"';
+  var code = '"'+text.replaceAll("\"","\\\"").replaceAll("\\","\\\\")+'"';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -269,7 +329,7 @@ Blockly.JavaScript['gvbvdxx_operators_random'] = function(block) {
   var value_from = Blockly.JavaScript.valueToCode(block, 'from', Blockly.JavaScript.ORDER_ATOMIC);
   var value_to = Blockly.JavaScript.valueToCode(block, 'to', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = value_from+'+Math.round(Math.random(1)*'+value_to+')';
+  var code = 'vm.project.block.random('+value_from+','+value_to+')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -293,6 +353,41 @@ Blockly.JavaScript['gvbvdxx_operators_maths'] = function(block) {
   if (dropdown_maths == "sin" || dropdown_maths == "cos") {
 	  code = 'vm.project.block.'+dropdown_maths+"("+value_name+")";
   }
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_operators_not'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '!('+value_name+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_operators_or'] = function(block) {
+  var value_a = Blockly.JavaScript.valueToCode(block, 'a', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_b = Blockly.JavaScript.valueToCode(block, 'b', Blockly.JavaScript.ORDER_ATOMIC);
+  if (!(value_a)) {
+	  value_a = "false"
+  }
+  if (!(value_b)) {
+	  value_b = "false"
+  }
+  // TODO: Assemble JavaScript into code variable.
+  var code = `${value_a} || ${value_b}`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_operators_and'] = function(block) {
+  var value_a = Blockly.JavaScript.valueToCode(block, 'a', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_b = Blockly.JavaScript.valueToCode(block, 'b', Blockly.JavaScript.ORDER_ATOMIC);
+  if (!(value_a)) {
+	  value_a = "false"
+  }
+  if (!(value_b)) {
+	  value_b = "false"
+  }
+  // TODO: Assemble JavaScript into code variable.
+  var code = `${value_a} && ${value_b}`;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

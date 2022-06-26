@@ -1,6 +1,139 @@
 Blockly.defineBlocksWithJsonArray([
 //sprites
 {
+  "type": "gvbvdxx_game_sp_all",
+  "message0": "All Sprites Visible As An List",
+  "inputsInline": true,
+  "output": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprites_rotl",
+  "message0": "Change %1 Turn Left %2",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_value",
+      "name": "pos",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprites_rotr",
+  "message0": "Change %1 Turn Right %2",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_value",
+      "name": "pos",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprites_byy",
+  "message0": "Change %1 Y By %2",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_value",
+      "name": "pos",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprites_byx",
+  "message0": "Change %1 X By %2",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_value",
+      "name": "pos",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprite_t_mouse",
+  "message0": "sprite %1 touching mouse?",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    }
+  ],
+  "output": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "gvbvdxx_game_sprite_clicked",
+  "message0": "when sprite %1 is clicked %2 %3",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "sprite",
+      "variable": "sprite"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "NAME"
+    }
+  ],
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "gvbvdxx_game_sprites_ghost",
   "message0": "set %1 ghost effect to %2",
   "args0": [
@@ -364,6 +497,199 @@ Blockly.defineBlocksWithJsonArray([
 },
 //sensing
 {
+  "type": "gvbvdxx_game_key",
+  "message0": "%1 on keyboard",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "key",
+      "options": [
+        [
+          "up arrow",
+          "ArrowUp"
+        ],
+        [
+          "down arrow",
+          "ArrowDown"
+        ],
+        [
+          "left arrow",
+          "left arrow"
+        ],
+        [
+          "right arrow",
+          "right arrow"
+        ],
+        [
+          "space",
+          " "
+        ],
+        [
+          "1",
+          "1"
+        ],
+        [
+          "2",
+          "2"
+        ],
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "6"
+        ],
+        [
+          "7",
+          "7"
+        ],
+        [
+          "8",
+          "8"
+        ],
+        [
+          "9",
+          "9"
+        ],
+        [
+          "10",
+          "10"
+        ],
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b",
+          "b"
+        ],
+        [
+          "c",
+          "c"
+        ],
+        [
+          "e",
+          "e"
+        ],
+        [
+          "f",
+          "f"
+        ],
+        [
+          "g",
+          "g"
+        ],
+        [
+          "h",
+          "h"
+        ],
+        [
+          "i",
+          "i"
+        ],
+        [
+          "j",
+          "j"
+        ],
+        [
+          "k",
+          "k"
+        ],
+        [
+          "l",
+          "l"
+        ],
+        [
+          "m",
+          "m"
+        ],
+        [
+          "n",
+          "n"
+        ],
+        [
+          "o",
+          "o"
+        ],
+        [
+          "p",
+          "p"
+        ],
+        [
+          "q",
+          "q"
+        ],
+        [
+          "r",
+          "r"
+        ],
+        [
+          "s",
+          "s"
+        ],
+        [
+          "t",
+          "t"
+        ],
+        [
+          "u",
+          "u"
+        ],
+        [
+          "v",
+          "v"
+        ],
+        [
+          "w",
+          "w"
+        ],
+        [
+          "x",
+          "x"
+        ],
+        [
+          "y",
+          "y"
+        ],
+        [
+          "y",
+          "y"
+        ],
+        [
+          "z",
+          "z"
+        ],
+        [
+          "y",
+          "y"
+        ],
+        [
+          "z",
+          "z"
+        ],
+        [
+          "z",
+          "z"
+        ]
+      ]
+    }
+  ],
+  "inputsInline": true,
+  "output": "String",
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "gvbvdxx_game_mouse_x",
   "message0": "Mouse X Position",
   "inputsInline": true,
@@ -408,7 +734,7 @@ Blockly.JavaScript['gvbvdxx_game_sprites_set_position'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite+'.'+dropdown_name+' = '+value_pos+';\n';
+  var code = variable_sprite+'.'+dropdown_name+' = Number('+value_pos+');\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_game_sprites_size'] = function(block) {
@@ -416,7 +742,7 @@ Blockly.JavaScript['gvbvdxx_game_sprites_size'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite+'.'+dropdown_name+' = '+value_pos+';\n';
+  var code = variable_sprite+'.'+dropdown_name+' = Number('+value_pos+');\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_game_ontick'] = function(block) {
@@ -436,7 +762,7 @@ Blockly.JavaScript['gvbvdxx_game_sprites_direction'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite+'.direction = '+value_name+';\n';
+  var code = variable_sprite+'.direction = Number('+value_name+');\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_game_mouse_x'] = function(block) {
@@ -512,6 +838,61 @@ Blockly.JavaScript['gvbvdxx_game_sprites_ghost'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_ghost = Blockly.JavaScript.valueToCode(block, 'ghost', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite'.ghost = '+value_ghost+';\n';
+  var code = variable_sprite+'.ghost = '+value_ghost+';\n';
   return code;
+};
+Blockly.JavaScript['gvbvdxx_game_key'] = function(block) {
+  var dropdown_key = block.getFieldValue('key');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"'+dropdown_key+'"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_game_sprite_clicked'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  // TODO: Assemble JavaScript into code variable.
+  var code = variable_sprite+'.clicked.push(function () {\n'+statements_name+'\n});\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprite_t_mouse'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'vm.project.block.getTouchMouse('+variable_sprite+')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_byx'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = variable_sprite+'.x += Number('+value_pos+');\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_byy'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = variable_sprite+'.y += Number('+value_pos+');\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_rotr'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = variable_sprite+'.direction += Number('+value_pos+');\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_rotl'] = function(block) {
+  var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
+  var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = variable_sprite+'.direction -= '+value_pos+';\n';
+  return code;
+};
+Blockly.JavaScript['gvbvdxx_game_sp_all'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '(function () {var list = [vm.project.sprites];return list[0];})()';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
