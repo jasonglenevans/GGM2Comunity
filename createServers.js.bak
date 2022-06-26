@@ -4,7 +4,6 @@ var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
 setInterval(() => {
-	console.log("test");
 	if (params.get('offline')) {
 		document.getElementById("online_options").hidden = true;
 	} else {
