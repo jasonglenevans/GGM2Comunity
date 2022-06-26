@@ -7,7 +7,7 @@ document.getElementById("online_options").hidden = false;
 if (params.get('offline')) {
 	document.getElementById("online_options").hidden = true;
 } else {
-	window.extension.setEnabled(false);
+	//window.extension.setEnabled(false);
 	if (id) {
 	projectId = id
 	setTimeout(() => {
