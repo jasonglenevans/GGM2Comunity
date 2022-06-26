@@ -534,8 +534,9 @@ ${styles}
 		<script src="ggm-gui/index.js?n=1"></script>
 		${window.options.desktop ? ('<script src="ggm-gui/desktop.js?n=1"></script><script src="desktop-external.js?n=1"></script>'): "<!--no desktop version-->"}
 		${wsinfo}
-		<!--The Upload Scripts-->
-		${window.options.desktop ? ('<!--online unavailable-->'): '<script src="../servers.js?n=1"></script><script src="../createServers.js?n=1"></script>'}
+		<!--The Upload Scripts
+		<script src="../servers.js?n=1"></script>
+		<script src="../createServers.js?n=1"></script>-->
 	</body>
 </html>
 <!--<script>window.errordir = "../"</script>

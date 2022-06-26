@@ -97,7 +97,7 @@
 <body>
 
 <div id="main_menu">
-<a href="index.html"><img width=100 height=48 style="float:left;" src="./logo.png"></a>
+<a href="index.html"><img width=100 height=48 style="float:left;" src="editor/ggm-gui/logo.svg"></a>
 <a href="editor/index.html"><p class="main_menu_item">Create</p></a>
 <a href="explore.html"><p class="main_menu_item">Explore</p></a>
 <a href="send.html"><p class="main_menu_item">Send</p></a>
