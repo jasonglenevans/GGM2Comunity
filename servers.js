@@ -1,6 +1,9 @@
 window.serverId = "neon-disco-straw"
 var PREVFETCH = window.fetch
 window.fetch = async function (a,b,c,d) {
+	if (!(a.spit(":")[0] == "http" || a.spit(":")[0] == "https")) {
+		return await PREVFETCH(a,b,c,d);
+	}
 	//not trying to hack the firebase servers,but put a url so git pages can access it!
     return await PREVFETCH("https://cors-anywhere.herokuapp.com/"+a,b,c,d);
 }
