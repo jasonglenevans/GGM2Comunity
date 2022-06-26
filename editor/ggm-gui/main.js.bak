@@ -298,7 +298,7 @@ if (window.options.wsSupport) {
 var menuBarDesktopFile = `
 <p class="main_menu_item main_menu_item_p" title="save your project to be edited, as an copy." onclick="saveAs()">Save As</p>
 <p class="main_menu_item main_menu_item_p" title="change the way the editor looks." onclick="document.getElementById('themes').hidden = false;">Themes</p>
-<p class="main_menu_item main_menu_item_p" title="preview the game in your web browser.">Preview</p>
+<p class="main_menu_item main_menu_item_p" title="preview the game in your web browser." id="previewBrowser">Preview</p>
 `
 document.write(`<!DOCTYPE html>
 <html>

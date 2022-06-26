@@ -3,15 +3,16 @@ let id = Number(params.get('id'));
 var ogSaveOnlineText = document.getElementById("saveOnlineButton").innerHTML
 var projectId = 0;
 var email = "jasonglenevans2010@gmail.com";
-if (params.get('offline')) {
-	setInterval(() => {
+setInterval(() => {
+	if (params.get('offline')) {
 		document.getElementById("online_options").hidden = true;
-	},10)
+	} else {
+		document.getElementById("online_options").hidden = false;
+	}
+},1)
+if (params.get('offline')) {
 } else {
 	//window.extension.setEnabled(false);
-	setInterval(() => {
-		document.getElementById("online_options").hidden = false;
-	},10)
 	if (id) {
 	projectId = id
 	setTimeout(() => {
