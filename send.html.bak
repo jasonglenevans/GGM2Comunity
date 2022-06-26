@@ -136,14 +136,6 @@ function send() {
 	});
 }
 </script>
-<script>
-if (false) {
-	console.log("creator is here, ignoring errors.");
-} else {
-	servers.readFile("ggm-info.json",(data) => {
-		var info = JSON.parse(data);
-	});
-}
-</script>
+<script src="info.js?n=1"></script>
 </body>
 </html>
