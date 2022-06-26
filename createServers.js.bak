@@ -50,7 +50,7 @@ if (params.get('offline')) {
 			window.alert("Something Went Wong When Trying To Make A New Project.");
 		}
 	});
-	},37);
+	},370);
 	setInterval(function (){
 		document.getElementById("loadingScreenHeader").innerHTML = loadingText;
 		document.getElementById("loadingscreen").hidden = false;
@@ -89,4 +89,10 @@ if (params.get('offline')) {
 		saveOnline();
 	}
 	updateShareText();
+}
+
+function viewProjectPage() {
+	var a = document.createElement("a");
+	a.href = "../player.html?id="+id;
+	a.click();
 }

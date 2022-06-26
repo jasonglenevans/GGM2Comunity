@@ -15,4 +15,5 @@ if (false) {
 		}
 	});
 }
-window.location.replace("https://gvbvdxxgamemaker2comunity.createaforum.com/");
+//remove the slashes to redirect to "new" version.
+//window.location.replace("https://gvbvdxxgamemaker2comunity.createaforum.com/");
