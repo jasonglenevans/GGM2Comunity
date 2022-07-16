@@ -152,12 +152,12 @@ document.body.onmouseup = function (event) {
 setInterval(function () {
     document.getElementById("testPos").innerHTML = vm.project.mouseX + "," + vm.project.mouseY + ", down:" + vm.project.mouseDown;
 }, 1);
-document.getElementById("gameArea").onkeydown = function (event) {
+document.body.onkeydown = function (event) {
     vm.simulateKey({
         key: event.key,
         down: true
     });
-    event.preventDefault();
+    //event.preventDefault();
 }
 document.body.onkeyup = function (event) {
     vm.simulateKey({
