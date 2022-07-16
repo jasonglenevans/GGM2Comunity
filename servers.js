@@ -19,7 +19,7 @@ window.servers = {
 			window.uploadBytes(refr, bytes).then((snapshot) => {
 			  callback();
 			});
-			}catch(e){setTimeout(loop,1);console.error(e);}
+			}catch(e){setTimeout(loop,1);}
 		}
 		setTimeout(loop,1);
 	},
@@ -34,7 +34,7 @@ window.servers = {
 						})
 					})
 				});
-			}catch(e){setTimeout(loop,1);console.error(e);}
+			}catch(e){setTimeout(loop,1);}
 		}
 		setTimeout(loop,1);
 	},

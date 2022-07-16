@@ -56,9 +56,6 @@
 <center>
 
 <h1>Explore</h1>
-<p>Future Updates!</p><br>
-<p>we are planning to add a single request soon, once the progam numbers start boosing up, due to are limints of cors-anywhere</p>
-
 <!--<label for="seartch">Find:</label>
 <input type="text" id="seartch">-->
 <hr>
@@ -78,34 +75,43 @@ function serverLoad() {
 		if (idCounter < 1) {
 			document.getElementById("explore").innerHTML = "";
 		}
-	}
-	servers.readFile("ggm-community-all-projects.txt",function (data) {
-		document.getElementById("explore").innerHTML = "";
-		var projectsArray = JSON.parse(data).projects;
-		function makeProjectDiv(thubanilsrc,id) {
-			var b = document.createElement("button");
-			var a = document.createElement("a");
-			a.href = "player.html?id="+id;
-			a.appendChild(b);
-			document.getElementById("explore").appendChild(a);
-			if (json.thumb) {
-				b.innerHTML = json.title+"<br><img src='"+thubanilsrc+"' width=160 height=100>  ";
+		servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
+			try{
+				var json = JSON.parse(data)
+				if (json.title) {
+				//json.shared
+					if (json.shared) {
+						var b = document.createElement("button");
+						var a = document.createElement("a");
+						a.href = "player.html?id="+idCounter;
+						a.appendChild(b);
+						document.getElementById("explore").appendChild(a);
+						if (json.thumb) {
+							b.innerHTML = json.title+"<br><img src='"+json.thumb+"' width=160 height=100>  ";
+						} else {
+							b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
+						}
+						b.setAttribute("class","project");
+						b.setAttribute("id",idCounter);
+						document.getElementById("loading").hidden = true;
+					}
+				}
+			}catch(e){}
+		});
+			if (idCounter < maxCount) {
+				idCounter += 1
+				console.log(idCounter);
+				getProject();
 			} else {
-				b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
 			}
-			b.setAttribute("class","project");
-			b.setAttribute("id",idCounter);
-			return a;
-		}
-		for (var i in projectsArray.length) {
-			var div = makeProjectDiv(projectsArray[i].thumbanil,projectsArray[i].id);
-			div.onclick 
-		}
-		
+	}
+	servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
+		maxCount = Number(data);
+		getProject()
 	});
 }
 //servers.wsobject.onopen = serverLoad;
-//don't wait for the ws server to open, we replaced it with firebase!
+//replaced with firebase
 serverLoad();
 </script>
 <script src="info.js?n=1"></script>

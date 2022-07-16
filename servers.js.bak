@@ -28,7 +28,7 @@ window.servers = {
 			try{
 			var refr = ref(window.storage, name);
 			window.getDownloadURL(refr).then((url) => {
-					fetch("https://cors-anywhere.herokuapp.com/"+url).then((res) => {
+					fetch(""+url).then((res) => {
 						res.text().then((text) => {
 							callback(text)
 						})

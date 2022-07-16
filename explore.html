@@ -93,21 +93,17 @@ function serverLoad() {
 						}
 						b.setAttribute("class","project");
 						b.setAttribute("id",idCounter);
-						sharedCount += 1;
 					}
-				}
-			}catch(e){}
-			if (idCounter < maxCount) {
-				idCounter += 1
-				getProject();
-			} else {
-				if (sharedCount < 1) {
-					document.getElementById("loading").innerHTML = "There Are No Projects You Should <a href='editor/index.html'>Make One!</a>";
-				} else {
 					document.getElementById("loading").hidden = true;
 				}
-			}
+			}catch(e){}
 		});
+			if (idCounter < maxCount) {
+				idCounter += 1
+				console.log(idCounter);
+				getProject();
+			} else {
+			}
 	}
 	servers.readFile("ggm-community-accountid-latest-id.txt",function (data) {
 		maxCount = Number(data);

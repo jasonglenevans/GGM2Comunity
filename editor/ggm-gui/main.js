@@ -341,7 +341,7 @@ ${styles}
 			<button class="buttonBlue" style="float:left;" onclick="document.getElementById('projectDetails').hidden = false;" id="details">Details</button>
 			<div id="online_options" hidden><button class="menuButtonOrange" onclick="share();" id="share">Share</button>
 			<button class="buttonBlue" style="float:left;" onclick="viewProjectPage()" id="details">View project page</button>
-			<p class="main_menu_item main_menu_item_p" onclick="saveOnline();" id="saveOnlineButton">Save Online</p>
+			<p class="main_menu_item main_menu_item_p" onclick="saveOnline();" style="float:right;" id="saveOnlineButton">Save Online</p>
 			<p class="main_menu_item main_menu_item_p" onclick="reportButton();" id="report">Report</p></div>
 		</div>
 		<div hidden id="main_menu_file_options"></div>

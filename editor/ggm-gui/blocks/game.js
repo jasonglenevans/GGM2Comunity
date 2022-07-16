@@ -514,11 +514,11 @@ Blockly.defineBlocksWithJsonArray([
         ],
         [
           "left arrow",
-          "left arrow"
+          "ArrowLeft"
         ],
         [
           "right arrow",
-          "right arrow"
+          "ArrowRight"
         ],
         [
           "space",

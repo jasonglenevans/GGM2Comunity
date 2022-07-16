@@ -714,6 +714,16 @@ Blockly.defineBlocksWithJsonArray([
   "colour": BlockColors["game"],
   "tooltip": "",
   "helpUrl": ""
+},
+//engine
+{
+  "type": "gvbvdxx_game_stop",
+  "message0": "Stop Game",
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);
 Blockly.JavaScript['gvbvdxx_game_sprites_empty'] = function(block) {

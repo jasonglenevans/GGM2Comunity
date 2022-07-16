@@ -1,0 +1,16 @@
+var menubarThing = document.getElementById("main_menu");
+if (localStorage.getItem("signedinto")) {
+	console.log("account is signed in");
+	var b = document.createElement("b");
+	b.href = ""
+} else {
+	console.log("account is not signed in");
+	var a = document.createElement("a");
+	//make a link to sign in
+	a.href = "./signin.html"
+	a.innerHTML = "<p class='main_menu_item'>Sign In</p>";
+	a.setAttribute("style",`
+		float:right;
+	`)
+	menubarThing.appendChild(a);
+}
