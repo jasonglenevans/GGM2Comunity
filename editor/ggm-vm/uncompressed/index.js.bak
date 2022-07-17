@@ -14,7 +14,7 @@ window.vm = {
 						 future update: i may add fetch blocks,
 						 so i will need async functions.
 						*/
-						eval("(async function () {" +vm.code+ "})()");
+						eval(vm.code);
 					}catch(e){
 						vm.console.error("Error in script:"+e);
 					}

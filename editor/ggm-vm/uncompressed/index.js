@@ -316,17 +316,25 @@ window.vm = {
 	}
 }
 vm.___CHECKCOLLIDE = function isCollide(a2, b2) {
+	function getRealCanvasPos(x,y,width,height,canvas) {
+		var mainX = x-(width/2);
+		var mainY = y-(height/2);
+		return {
+			x:mainX-(canvas.width/2),
+			y:mainY-(canvas.height/2)
+		};
+	}
 	var a = {
-		width:a2.width,
+		width:a2.width/2,
 		height:a2.height,
-		x:a2.x-a2.width/2+(vm.renderer.canvas.width / 2),
-		y:a2.y-a2.height/2+(vm.renderer.canvas.height / 2)
+		x:getRealCanvasPos(a2.x,a2.y,a2.width/2,a2.height,vm.renderer.canvas).x,
+		y:getRealCanvasPos(a2.x,a2.y,a2.width/2,a2.height,vm.renderer.canvas).y
 	};
 	var b = {
-		width:b2.width*2,
+		width:b2.width/2,
 		height:b2.height,
-		x:b2.x-b2.width/2+(vm.renderer.canvas.width / 2),
-		y:b2.y-b2.height/2+(vm.renderer.canvas.height / 2)
+		x:getRealCanvasPos(b2.x,b2.y,b2.width/2,b2.height,vm.renderer.canvas).x,
+		y:getRealCanvasPos(b2.x,b2.y,b2.width/2,b2.height,vm.renderer.canvas).y
 	};
 	var result = (
 		a.x + a.width >= b.x &&
