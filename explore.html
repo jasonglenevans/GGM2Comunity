@@ -75,7 +75,8 @@ function serverLoad() {
 		if (idCounter < 1) {
 			document.getElementById("explore").innerHTML = "";
 		}
-		servers.readFile("ggm-community-accountid-project-"+idCounter+".ggm2gserver",function (data) {
+		var tmpID = idCounter;
+		servers.readFile("ggm-community-accountid-project-"+tmpID+".ggm2gserver",function (data) {
 			try{
 				var json = JSON.parse(data)
 				if (json.title) {
@@ -83,7 +84,7 @@ function serverLoad() {
 					if (json.shared) {
 						var b = document.createElement("button");
 						var a = document.createElement("a");
-						a.href = "player.html?id="+idCounter;
+						a.href = "player.html?id="+tmpID;
 						a.appendChild(b);
 						document.getElementById("explore").appendChild(a);
 						if (json.thumb) {
@@ -92,7 +93,7 @@ function serverLoad() {
 							b.innerHTML = json.title+"<br><br><br><p>No Thumbanil Avaiable.</p><br><br>";
 						}
 						b.setAttribute("class","project");
-						b.setAttribute("id",idCounter);
+						b.setAttribute("id",tmpID);
 					}
 					document.getElementById("loading").hidden = true;
 				}

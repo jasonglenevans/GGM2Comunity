@@ -93,8 +93,8 @@ function serverLoad() {
 						}
 						b.setAttribute("class","project");
 						b.setAttribute("id",idCounter);
-						document.getElementById("loading").hidden = true;
 					}
+					document.getElementById("loading").hidden = true;
 				}
 			}catch(e){}
 		});
