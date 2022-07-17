@@ -736,7 +736,7 @@ Blockly.JavaScript['gvbvdxx_game_sprites_set_img'] = function(block) {
   var variable_sprite = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('sprite'), Blockly.Variables.NAME_TYPE);
   var value_image = Blockly.JavaScript.valueToCode(block, 'image', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = variable_sprite+'.image = '+value_image+';\n'+variable_sprite+'.width = '+variable_sprite+'.image.width;\n'+variable_sprite+'.height = '+variable_sprite+'.image.height;\n';
+  var code = variable_sprite+'.image = '+value_image+';\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_game_sprites_set_position'] = function(block) {
