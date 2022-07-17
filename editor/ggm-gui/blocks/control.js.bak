@@ -182,7 +182,7 @@ Blockly.defineBlocksWithJsonArray([
 },
 {
   "type": "gvbvdxx_control_wait_until",
-  "message0": "wait until %1 %2 then %3 %4",
+  "message0": "Wait Until %1 %2 Then %3 %4",
   "args0": [
     {
       "type": "input_dummy",

@@ -216,11 +216,11 @@ Blockly.JavaScript['gvbvdxx_control_if_then'] = function(block) {
   var statements_then = Blockly.JavaScript.statementToCode(block, 'then');
   // TODO: Assemble JavaScript into code variable.
   if (value_if == "") {
-	  value_if = "(false)";
+	  value_if = "false";
   } else {
 	  block.setWarningText(null);
   }
-  var code = 'if '+value_if+' {\n'+statements_then+'\n}\n';
+  var code = 'if ('+value_if+') {\n'+statements_then+'\n}\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_control_if_then_else'] = function(block) {
@@ -229,11 +229,11 @@ Blockly.JavaScript['gvbvdxx_control_if_then_else'] = function(block) {
   var statements_else = Blockly.JavaScript.statementToCode(block, 'else');
   // TODO: Assemble JavaScript into code variable.
   if (value_if == "") {
-	  value_if = "(false)";
+	  value_if = "false";
   } else {
 	  block.setWarningText(null);
   }
-  var code = 'if '+value_if+' {\n'+statements_then+'\n} else {\n'+statements_else+'\n}\n';
+  var code = 'if ('+value_if+') {\n'+statements_then+'\n} else {\n'+statements_else+'\n}\n';
   return code;
 };
 Blockly.JavaScript['gvbvdxx_control_while'] = function(block) {
