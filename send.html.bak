@@ -55,9 +55,9 @@
 <input id="title" placeholder="Title/Name of message"><input id="username" placeholder="Username (not your real name)"><br><br>
 <textarea id="message" style="
 	height: 224px;
-    width: 381px;" placeholder="Write Something here,
-do not share or attempt to send passwords,
-if you just did, go change them right now!"></textarea><br>
+    width: 381px;" placeholder='Write Something here,
+other pepole will see this message, including Gvbvdxx!
+make your message nice to others, stay safe! "dont share passwords".'></textarea><br>
 <button onclick="send()" id="send"></button>
 <h1>Messages:</h1>
 <div id="messages">

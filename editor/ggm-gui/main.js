@@ -436,7 +436,7 @@ ${styles}
 					<h1>More Project Details</h1>
 					<button class="buttonBlue" onclick="document.getElementById('projectDetails').hidden = true;">Close</button>
 					<h3>Discription:</h3>
-					<textarea id="discription" style="width:488px;height:577px;resize:none;">Put Notes And Credits Here</textarea>
+					<textarea id="discription" style="width:488px;height:577px;resize:none;" onchange="try{saveOnline()}catch(e){}">Put Notes And Credits Here</textarea>
 				</center>
 			</div>
 			<div style="

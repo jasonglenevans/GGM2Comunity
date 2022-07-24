@@ -650,11 +650,16 @@ function exportGame() {
 }
 
 //make it so a dailog will show when the user closes the page
+window.showSaveDialog = true;
 if (window.options.confirmDialog) {
     setInterval(() => {
-        window.onbeforeunload = function () {
-            return "empty";
-        };
+		if (window.showSaveDialog) {
+			window.onbeforeunload = function () {
+				return "empty";
+			};
+		} else {
+			window.onbeforeunload = null;
+		}
     });
 }
 
@@ -666,3 +671,10 @@ document.getElementById("New_Game").onclick = function () {
         loadDefaultGame();
     }
 };
+
+function myUpdateFunction(event) {
+  var code = Blockly.JavaScript.workspaceToCode(workspace);
+  vm.code = code;
+  window.showSaveDialog = true;
+}
+workspace.addChangeListener(myUpdateFunction);

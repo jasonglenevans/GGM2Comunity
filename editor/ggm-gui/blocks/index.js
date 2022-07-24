@@ -10,6 +10,7 @@ gui.loadScript("blocks/control.js",function () {
 							gui.loadScript("blocks/other.js",function () {
 								gui.loadScript("blocks/variables.js",function () { //aka "display"
 									loadDefaultGame(); //load function, for modders out there, call this when making a new game.
+									try{setTimeout(onAllBlocksLoaded,150);}catch(e){}
 								});
 							});
 						});
@@ -19,11 +20,4 @@ gui.loadScript("blocks/control.js",function () {
 		});
 	});
 });
-
-
-function myUpdateFunction(event) {
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
-  vm.code = code;
-}
-workspace.addChangeListener(myUpdateFunction);
 console.log("[gui]:blocks loaded.");
