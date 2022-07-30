@@ -247,7 +247,30 @@ window.vm = {
 	___CHECKCOLLIDE:function (spr1,spr2){
 		return false;
 	},
-	collideDiv:document.createElement("div")
+	collideDiv:document.createElement("div"),
+	loadFile: function (JSONText) {
+		try{
+			console.log(`[VM]: Extracting JSON File...`);
+			var fileData = JSON.parse(JSONText);
+			vm.code = fileData.code;
+            var files = fileData.files;
+            var index = 0;
+            while (index < files.length) {
+				vm.project.resources[files[index].name] = {
+					name: files[index].name,
+					data: files[index].data,
+					type: files[index].type
+				};
+				console.log(`[VM]: Loading File ${files[index].name}`)
+				index += 1;
+			}
+			return {
+				title:fileData.title
+			};
+		}catch(e){
+			throw Error(`Error! Cannot Load File! Check The Data Sent Through This Function, Error Is ${e}`);
+		}
+	}
 }
 vm.___CHECKCOLLIDE = function isCollide(a, b) {
 	var result = !(

@@ -127,12 +127,12 @@ window.vm = {
 			},
 			cos:function (number) {
 				try{
-				return Math.cos((90-number)* (Math.PI/180));
+				return Math.cos((number)* (Math.PI/180));
 				}catch(e){vm.console.error(e);}
 			},
 			sin:function (number) {
 				try{
-				return Math.sin((90-number)* (Math.PI/180));
+				return Math.sin((number)* (Math.PI/180));
 				}catch(e){vm.console.error(e);}
 			},
 			getMoseData:function () {
@@ -247,7 +247,28 @@ window.vm = {
 	___CHECKCOLLIDE:function (spr1,spr2){
 		return false;
 	},
-	collideDiv:document.createElement("div")
+	collideDiv:document.createElement("div"),
+	loadFile: function (JSONText) {
+		try{
+			var fileData = JSON.parse(JSONText);
+			vm.code = fileData.code;
+            var files = fileData.files;
+            var index = 0;
+            while (index < files.length) {
+				vm.project.resources[files[index].name] = {
+					name: files[index].name,
+					data: files[index].data,
+					type: files[index].type
+				};
+				index += 1;
+			}
+			return {
+				title:fileData.title
+			};
+		}catch(e){
+			throw Error(`Error! Cannot Load File! Check The Data Sent Through This Function, Error Is ${e}`)
+		}
+	}
 }
 vm.___CHECKCOLLIDE = function isCollide(a, b) {
 	var result = !(
