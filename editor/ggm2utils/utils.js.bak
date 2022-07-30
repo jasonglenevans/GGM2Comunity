@@ -7,13 +7,15 @@ do not modify or change unless you need to.
 ===============================================
 */
 //START LOAD
-eval(atob("${btoa("console.log('Compressed Files Loaded.')")}"));`;
+//eval(atob("${btoa("console.log('[Gvbvdxx Compress]: Compressed Files Loaded.')")}"));
+`;
 selectfile.addEventListener('change', (event) => {
 	const files = event.target.files;
 	if (files[0]) {
 		var reader = new FileReader();
 		reader.onload = function () {
-			fileData += "\n"+`eval(atob("${btoa(reader.result)}"));`;
+			//fileData += "\n"+`eval(atob("${btoa(reader.result)}"));`;
+			fileData += "\n"+`${reader.result}`;
 			converted.innerHTML = fileData;
 		};
 		reader.readAsText(files[0]);
