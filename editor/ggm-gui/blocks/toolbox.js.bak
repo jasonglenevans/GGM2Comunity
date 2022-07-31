@@ -361,6 +361,8 @@ var toolboxXML = `
 				</shadow>
             </value>
 			</block>
+			<block type="gvbvdxx_game_sprites_setsize"></block>
+			${blockSeparator}
 		</category>
 		<category colour="${BlockColors["game"]}" name="Events">
 			<block type="gvbvdxx_game_ontick"></block>
@@ -401,6 +403,8 @@ var toolboxXML = `
 			<block type="gvbvdxx_operators_text"></block>
 			<block type="gvbvdxx_operators_random"></block>
 			<block type="gvbvdxx_operators_math"></block>
+			<block type="gvbvdxx_operators_or"></block>
+			<block type="gvbvdxx_operators_and"></block>
 		</category>
 		<category colour="${BlockColors["control"]}" name="Control">
 			<block type="gvbvdxx_control_if_then"></block>

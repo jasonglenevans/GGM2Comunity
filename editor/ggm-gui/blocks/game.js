@@ -1,6 +1,22 @@
 Blockly.defineBlocksWithJsonArray([
 //sprites
 {
+  "type": "gvbvdxx_game_sprites_setsize",
+  "message0": "set sprite %1 size to the size of the image",
+  "args0": [
+    {
+      "type": "field_variable",
+      "name": "spr",
+      "variable": "sprite"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": BlockColors["game"],
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "gvbvdxx_game_sp_all",
   "message0": "All Sprites Visible As An List",
   "inputsInline": true,
@@ -905,4 +921,10 @@ Blockly.JavaScript['gvbvdxx_game_sp_all'] = function(block) {
   var code = '(function () {var list = [vm.project.sprites];return list[0];})()';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['gvbvdxx_game_sprites_setsize'] = function(block) {
+  var variable_spr = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('spr'), Blockly.Variables.NAME_TYPE);
+  // TODO: Assemble JavaScript into code variable.
+  var code = (variable_spr+'.width = '+variable_spr+'.image.width;\n')+(variable_spr+'.height = '+variable_spr+'.image.height;\n');
+  return code;
 };

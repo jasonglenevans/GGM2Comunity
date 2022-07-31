@@ -361,6 +361,8 @@ var toolboxXML = `
 				</shadow>
             </value>
 			</block>
+			${blockSeparator}
+			<block type="gvbvdxx_game_sprites_setsize"></block>
 		</category>
 		<category colour="${BlockColors["game"]}" name="Events">
 			<block type="gvbvdxx_game_ontick"></block>
