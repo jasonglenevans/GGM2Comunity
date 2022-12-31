@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="favicon.png?n=1">
+	</head>
+	
+	<body>
+		<script src="../isweb.js?n=1"></script>
+		<script>
+			var desktop = false;
+			try{
+				if (require) {
+					desktop = true
+				}
+			}catch(e){desktop = false}
+			window.options = {
+				testMode: true, //if false, vm run in compressed js file instead of the separate files, does no diffrence to the project.
+				title: !(desktop) ? ("Gvbvdxx Game Maker GUI"): "", //this is the title of the page. - updated it so it uses the desktop app name if its the desktop app
+				wsSupport: false, //adds the ws extensions.
+				addMaxFileSize: true, //this will add a max file size to it, making it very fast, dissallowing users to upload very big files.
+				blocklyBlocks: false, //allow showing blockly blocks in the toolbox.
+				url:!(desktop || !(window.IsWeb)) ? ("../index.html"): null, //if null, no link will be applied to the logo (still will have hovering animation)
+				confirmDialog: !(desktop), //confirm if the user wants to leave before saving, but in electron, it just prevents the user from closing the window.
+				desktop: desktop //if there is electron, then this will make it run as an desktop app.
+			};
+			//compress the vm files using: https://jscompress.com/
+		</script>
+		<script src="ggm-gui/main.js?n=1"></script>
+	</body>
+</html>

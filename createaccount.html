@@ -1,0 +1,178 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Gvbvdxx game maker 2 commuinity!</title>
+<style>
+	#main_menu {
+		position:fixed;
+		top:0;
+		left:0;
+		background-color:#339af0;
+		width:100%;
+		height:48px;
+	}
+	.main_menu_item {
+		font-weight:bold;
+		color:#ffffff;
+		cursor:pointer;
+		float:left;
+		margin-left:15px;
+	}
+	.main_menu_item:hover {
+		font-size:20px;
+		margin-top:13px;
+	}
+	html {
+		background-color:#edf2ff;
+		font-family:Arial;
+	}
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+		text-align:left;
+	}
+	#comments {
+	}
+.buttonBlue {
+	color:white;
+	border-radius:8px;
+	width:auto;
+	height:35px;
+	border:none;
+	font-weight:bold;
+	margin-top:7px;
+	margin-left:15px;
+	background-color:#0095ff;
+}
+.buttonBlue:hover {
+	background-color:#0076c9;
+	cursor:pointer;
+}
+
+
+/* The animation code */
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+/* The element to apply the animation to */
+#loadingCircle {
+  width: 50px;
+  height: 50px;
+  border-style:solid;
+  border-width:5px;
+  border-radius:50%;
+  border-top-color: white;
+  border-bottom-color: white;
+  border-left-color: orange;
+  border-right-color: orange;
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  /* animation-timing-function: linear; */
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+</style>
+<link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<div id="main_menu">
+<a href="./index.html"><img width=100 height=48 style="float:left;" src="editor/ggm-gui/logo.svg"></a>
+<a href="editor/index.html"><p class="main_menu_item">Create</p></a>
+<a href="https://ggm2c.createaforum.com/index.php"><p class="main_menu_item">Forum</p></a>
+<a href="send.html"><p class="main_menu_item">Send</p></a>
+<a href="./tutorials/index.html"><p class="main_menu_item">Tutorials</p></a>
+</div>
+<br></br>
+<center>
+
+<h1>Create Account</h1>
+<br>
+<p>Your User Should Follow The Current Things:<br>
+No Spaces In Username And Password<br>
+No Swear Words In Username
+</p>
+<br>
+<label>Username:</label>
+<input type="text" id="username" placeholder="username..." style="height:30px;border:none;border-radius:10px;">
+<br>
+<label>Password:</label>
+<input type="password" id="password" style="height:30px;border:none;border-radius:10px;"><br>
+<button class="buttonBlue" id="go">Create!</button>
+<div id="loadingCircle" hidden></div><br>
+<p style="color:red;" id="errorMessage" hidden>error message</p><br>
+<hr style="">
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
+
+</center>
+<script src="servers.js?n=1"></script>
+<script>
+var go = document.getElementById("go");
+var username = document.getElementById("username");
+var password = document.getElementById("password");
+var loadingCircle = document.getElementById("loadingCircle");
+var errorMessage = document.getElementById("errorMessage");
+function check(username,password) {
+	function giveError(ERR) {
+		errorMessage.innerHTML = err;
+		errorMessage.hidden = false;
+		loadingCircle.hidden = true;
+	}
+	if (username.indexOf(" ") > -1 || password.indexOf(" ") > -1) {
+		giveError("Username/Password Contains Spaces");
+		return false;
+	}
+	
+	return true;
+}
+go.onclick = function () {
+	loadingCircle.hidden = false;
+	servers.readFile("ggm2-logininfo.json",(data)=>{
+		var loginJSON = JSON.parse(data);
+		errorMessage.hidden = true;
+		if (check(username.value,password.value)) {
+			if (loginJSON.accounts[username.value]) {
+				errorMessage.innerHTML = "Account Exists Already!!";
+				errorMessage.hidden = false;
+				loadingCircle.hidden = true;
+			} else {
+				loginJSON.accounts[username.value] = {
+					username:username.value,
+					password:password.value,
+					pfp:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAYAAABXXxDfAAAAAXNSR0IArs4c6QAAAaVJREFUaEPtm1GOgzAMRMsFuCQ34CDcgLPuikpRK5ZsEnsmjsH9bRPlzYxNGmCa5/nn9dDPFPDh/PMUiNifPV+WRR2DbdtEc6zrKhpXGrTv+5+fXDqvgZdCXy0eKQQdHgmexEAJQIVngCMFoMEzwVECBPypsUAaXg/nj3Vr6t+188PCHwsb3X2a86mUegggjT4dPpeA0oJbRCvNldvpdYEvbTNz39cKcDv4WnBN0xvO+RZo7WZnGHgJ9C3gNeCuY28FfohmGntLcNfw0svb92XVpfMIcJfOo8BN4SX1jgR3A4+GTnVvVvMtzj8WngVuGvuaww4muDn8fwKwwYeAvxKgB/gw8NLDDu04s26vXThifMAzblognGHPEc6H8x8FIPfq2JFFzB+xj9hH7N8KRM2fG4rmaaxcc8r9p7/93r7mMIMtgkm3rwFPaWEK0B2+BZwtQFd4CThTADfwhwjoEgj4Xjs8TezDefCj511jX3NcndsQoevd5ABTEn0GuAm8xP1bwbcIwAI3cz7VdakEmOBN8IhjIw9zxKtlHlxirDGcZ6jqYc5f9ERpZnFVBk4AAAAASUVORK5CYII="
+				};
+				servers.saveFile("ggm2-logininfo.json",JSON.stringify(loginJSON),()=>{
+					loadingCircle.hidden = true;
+					localStorage.setItem("username",username.value);
+					localStorage.setItem("password",password.value);
+					var a = document.createElement("a");
+					a.href = "index.html";
+					a.click();
+				});		
+			}
+		}
+	});
+};
+</script>
+<script src="info.js?n=1"></script>
+<script src="userdata.js?n=1"></script>
+</body>
+</html>

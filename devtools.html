@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+
+
+
+<head>
+
+
+
+<title>GGM2Community Devloper Tools</title>
+
+<style>
+
+/* The animation code */
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+/* The element to apply the animation to */
+#loadingCircle {
+  width: 50px;
+  height: 50px;
+  border-style:solid;
+  border-width:5px;
+  border-radius:50%;
+  border-top-color: white;
+  border-bottom-color: white;
+  border-left-color: orange;
+  border-right-color: orange;
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
+</style>
+
+
+
+</head>
+
+<body style="font-family:arial;">
+<center>
+<div id="signIn">
+<h1 style="
+	color:red;
+">WARNING</h1>
+<p>this is for devlopers of GGM2C (Gvbvdxx Game Maker 2 Community)<br>
+please leave if your not a devloper.
+</p><br>
+<div id="loadingCircle" hidden></div><br>
+<b>Sign in:</b><br>
+<p style="color:red;" id="errorMessage" hidden>error message</p><br>
+<form>
+<label for="username">Username:</label><br>
+<input type="text" id="username" name="username"><br><br>
+<label for="password">Password:</label><br>
+<input type="password" id="password" name="password"><br><br>
+<input type="submit" value="Submit">
+</form>
+</div>
+<div id="mainSetup" hidden>
+<h1>Welcome!</h1><br>
+<p>This is where you can edit things!</p><br>
+<p>Comments HTML</p><br>
+<textarea id="commentsHTML" style="width:800px; height:400px;resize:none;"></textarea><br>
+<p>Page HTML</p><br>
+<textarea id="pageHTML" style="width:800px; height:400px;resize:none;"></textarea><br>
+
+</div>
+</center>
+
+
+<script src="servers.js?n=1"></script>
+<script src="dev.js?n=1"></script>
+
+
+</body>
+
+</html>

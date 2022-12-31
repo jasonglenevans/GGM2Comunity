@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Gvbvdxx game maker 2 commuinity!</title>
+<style>
+	#main_menu {
+		position:fixed;
+		top:0;
+		left:0;
+		background-color:#339af0;
+		width:100%;
+		height:48px;
+	}
+	.main_menu_item {
+		font-weight:bold;
+		color:#ffffff;
+		cursor:pointer;
+		float:left;
+		margin-left:15px;
+	}
+	.main_menu_item:hover {
+		font-size:20px;
+		margin-top:13px;
+	}
+	html {
+		background-color:#edf2ff;
+		font-family:Arial;
+	}
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+		text-align:left;
+	}
+	#comments {
+	}
+</style>
+<link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<div id="main_menu">
+<img width=100 height=48 style="float:left;" src="./editor/ggm-gui/logo.svg">
+<a href="editor/index.html"><p class="main_menu_item">Create</p></a>
+<a href="https://ggm2c.createaforum.com/index.php"><p class="main_menu_item">Forum</p></a>
+<a href="send.html"><p class="main_menu_item">Send</p></a>
+<a href="./tutorials/index.html"><p class="main_menu_item">Tutorials</p></a>
+</div>
+<br></br>
+<center>
+
+<h1>Community</h1>
+<div id="devMessage"></div>
+<h4 id="views">We have _ Views.</h4>
+<h1>Free For All!</h1>
+<p>
+Yep, You Dont Have To Use Money For This Website!
+</p>
+<a href="editor/index.html?offline=true">Try it!</a>
+<h1>Comments</h1>
+<div class="commentsbox"><p id="comments"></p></div>
+<label for="username">Username:</label>
+<input type="text" id="username">
+<label for="comment">Message:</label>
+<input type="text" id="comment">
+<button id="submitComment">Submit</button>
+<hr style="">
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
+
+</center>
+<script src="servers.js?n=1"></script>
+<script>
+window.isHome = true;
+//view counter
+/*servers.saveFile("test.txt","test",function () {
+	console.log("saved")
+});*/
+servers.readFile("views-ggm-community.txt",function (data) {
+	servers.saveFile("views-ggm-community.txt",Number(data)+1,function () {
+		console.log("saved views.");
+		document.getElementById("views").innerHTML = "We have " + Number(data) + " Views.";
+	});
+});
+//comments
+document.getElementById("submitComment").innerHTML = "Submit";
+
+function loadComments() {
+	servers.readFile("ggm-comments.txt",function (data) {
+		var splitedText = data.split("\n");
+		document.getElementById("comments").innerHTML = splitedText.slice(1).join("<br>");
+	});
+}
+function postComment() {
+	document.getElementById("submitComment").innerHTML = "Submiting...";
+	servers.readFile("ggm-comments.txt",function (data) {
+		if (true) {
+			var val = "<b>["+document.getElementById("username").value+"]</b>:"+document.getElementById("comment").value;
+			var splitedText = data.split("\n");
+			splitedText.push(val);
+			servers.saveFile("ggm-comments.txt",splitedText.join("\n"),function () {document.getElementById("submitComment").innerHTML="Submit";loadComments();});
+		} else {
+			document.getElementById("submitComment").innerHTML="Submit";
+		}
+	});
+}
+loadComments();
+document.getElementById("submitComment").onclick = postComment;
+document.getElementById("devMessage").innerHTML = "Loading...";
+servers.readFile("ggm-page-text.txt",function (data) {
+	document.getElementById("devMessage").innerHTML = data;
+});
+</script>
+<script src="info.js?n=1"></script>
+<script src="userdata.js?n=1"></script>
+<script src="accountbar.js?n=1"></script>
+</body>
+</html>

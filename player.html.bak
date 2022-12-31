@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>Gvbvdxx game maker 2 commuinity!</title>
+<style>
+	.gameScreen {
+		width:600px;
+		height:360px;
+		border-radius:0px;
+	}
+	#main_menu {
+		position:fixed;
+		top:0;
+		left:0;
+		background-color:#339af0;
+		width:100%;
+		height:48px;
+	}
+	.main_menu_item {
+		font-weight:bold;
+		color:#ffffff;
+		cursor:pointer;
+		float:left;
+		margin-left:15px;
+	}
+	.main_menu_item:hover {
+		font-size:20px;
+		margin-top:13px;
+	}
+	html {
+		background-color:#edf2ff;
+		font-family:Arial;
+	}
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+		text-align:left;
+	}
+	#comments {
+	}
+	.buttonBlue {
+		color:white;
+		border-radius:8px;
+		width:auto;
+		height:35px;
+		border:none;
+		font-weight:bold;
+		margin-top:7px;
+		margin-left:15px;
+		background-color:#0095ff;
+	}
+	.buttonBlue:hover {
+		background-color:#0076c9;
+		cursor:pointer;
+	}
+	.gameArea {
+		width:680px;
+		height:380px;
+		background-color:black;
+	}
+	.left {
+		float:left;
+	}
+	.controlButton {
+		border:none;background-color:#e9ecef;cursor:pointer;
+	}
+	#loadingScreen {
+		position:fixed;
+		top:0;
+		left:0;
+		width:100vw;
+		height:100vw;
+		background-color:#339af0;
+		opacity:0.5;
+		color:white;
+	}
+	#loadingText {
+		position:fixed;
+		top:50%;
+		left:50%;
+		margin-left:-140px;
+	}
+	.fullscreenGame {
+		top:0;
+		left:0;
+		position:fixed;
+		width:100%;
+		height:100vh;
+		background-color:black;
+	}
+</style>
+<link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<div id="main_menu">
+<a href="index.html"><img width=100 height=48 style="float:left;" src="editor/ggm-gui/logo.svg"></a>
+<a href="editor/index.html"><p class="main_menu_item">Create</p></a>
+<a href="explore.html"><p class="main_menu_item">Explore</p></a>
+<a href="send.html"><p class="main_menu_item">Send</p></a>
+</div>
+<br><br><br>
+
+<center id="app" hidden>
+<h1 id="title"></h1>
+<div id="clicktostart" onclick="start()" class="gameArea" style="cursor:pointer;">
+	<center>
+		<br><br><br><br><br><br><br><br><br>
+		<h1 style="color:white; margin-top:;">Please Click To Start</h1>
+	</center>
+</div>
+<div id="gameArea" class="gameArea" hidden>
+<div style="background-color:#e9ecef;width:680px;height:20px;" id="controlBar">
+<button class="controlButton left" onclick="vm.start();">Start</button>
+<button class="controlButton left" onclick="vm.stop();">Stop</button>
+<button onclick="
+if (document.getElementById('gameArea').getAttribute('class') == 'fullscreenGame') {
+	document.getElementById('gameArea').setAttribute('class','gameArea');
+	document.getElementById('gameScreen').setAttribute('style','image-rendering: pixelated;');
+	document.getElementById('controlBar').setAttribute('style','background-color:#e9ecef;width:680px;height:20px;');
+	document.exitFullscreen();
+	document.getElementById('files').hidden = false;
+} else {
+	document.getElementById('gameArea').setAttribute('class','fullscreenGame');
+	document.getElementById('controlBar').setAttribute('style','background-color:#e9ecef;width:100%;height:20px;');
+	document.getElementById('gameArea').requestFullscreen();
+	document.getElementById('gameScreen').setAttribute('style','z-index:100000000;width:88.5%;height:calc(100vh - 18px);image-rendering:pixelated;');
+	document.getElementById('files').hidden = true;
+}" class="controlButton left">Toggle Fullscreen</button>
+</div>
+<center>
+<canvas id="gameScreen" width=600 height=360></canvas>
+</center>
+</div>
+<br>
+<button class="buttonBlue" onclick="editproject()">Edit project</button>
+<br>
+<br>
+<textarea id="discription" style="width:488px;height:577px;resize:none;" disabled></textarea><br>
+<hr style="">
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
+
+</center>
+<script src="servers.js?n=1"></script>
+<script src="editor/ggm-vm/compressed.js?n=1"></script>
+<div id="loadingScreen"><center><h1 id="loadingText">Project is loading...</h1></center></div>
+<script>
+renderer.canvas = document.getElementById("gameScreen");
+vm.attachAudioEngine(audioEngine);
+vm.attachRenderer(renderer);
+let params = (new URL(document.location)).searchParams;
+let id = Number(params.get('id'));
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: ((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width)/2,
+        y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+    };
+}
+function readFiles(files) {
+	var index = 0;
+	while (index < files.length) {
+		window.vm.project.resources[files[index].name] = {
+			name:files[index].name,
+			data:files[index].data,
+			type:files[index].type
+		};
+		index += 1;
+	}
+}
+if (id) {
+	servers.readFile("ggm-community-accountid-project-"+id+".ggm2gserver",function (data) {
+		var json = JSON.parse(data);
+		vm.code = json.code;
+		document.getElementById("loadingScreen").hidden = true;
+		document.getElementById("app").hidden = false;
+		document.getElementById("discription").innerHTML = json.dis;
+		readFiles(json.files);
+		document.getElementById("title").innerHTML = json.title;
+		document.getElementById("gameScreen").onmousemove = function (event) {
+			var pos = getMousePos(document.getElementById("gameScreen"), event);// get adjusted coordinates as above
+			var x = Math.round(pos.x/1)-(document.getElementById("gameScreen").width/2)/2;
+			var y = Math.round(pos.y*-1)+(document.getElementById("gameScreen").height/2);
+			event.preventDefault();
+			vm.setMousePos({
+				x:x,
+				y:y
+			});
+		}
+		document.getElementById("gameScreen").onmousedown = function (event) {
+			event.preventDefault();
+			vm.setMouseDown(true);
+		}
+		document.body.onmouseup = function (event) {
+			event.preventDefault();
+			vm.setMouseDown(false);
+		}
+		document.body.onkeydown = function (event) {
+			vm.simulateKey({
+				key:event.key,
+				down:true
+			});
+			event.preventDefault();
+		}
+		document.body.onkeyup = function (event) {
+			vm.simulateKey({
+				key:event.key,
+				down:false
+			});
+			event.preventDefault();
+		}
+	})
+} else {
+	document.getElementById("loadingText").innerHTML = "ID needs to be in the url.";
+}
+function start() {
+	vm.start();
+	document.getElementById("clicktostart").hidden = true;
+	document.getElementById("gameArea").hidden = false;
+}
+function editproject() {
+	var a = document.createElement("a");
+	a.href = "editor/index.html?id="+id;
+	a.click();
+}
+</script>
+<script src="info.js?n=1"></script>
+</body>
+</html>

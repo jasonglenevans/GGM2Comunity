@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>Gvbvdxx game maker 2 commuinity!</title>
+<style>
+	#main_menu {
+		position:fixed;
+		top:0;
+		left:0;
+		background-color:#339af0;
+		width:100%;
+		height:48px;
+	}
+	.main_menu_item {
+		font-weight:bold;
+		color:#ffffff;
+		cursor:pointer;
+		float:left;
+		margin-left:15px;
+	}
+	.main_menu_item:hover {
+		font-size:20px;
+		margin-top:13px;
+	}
+	html {
+		background-color:#edf2ff;
+		font-family:Arial;
+	}
+	.commentsbox {
+		width:480px;
+		height:360px;
+		overflow:scroll;
+		background-color:white;
+		text-align:left;
+	}
+	#comments {
+	}
+</style>
+<link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<div id="main_menu">
+<a href="./index.html"><img width=100 height=48 style="float:left;" src="editor/ggm-gui/logo.svg"></a>
+<a href="editor/index.html"><p class="main_menu_item">Create</p></a>
+<a href="explore.html"><p class="main_menu_item">Explore</p></a>
+<a href="send.html"><p class="main_menu_item">Send</p></a>
+<a href="./tutorials/index.html"><p class="main_menu_item">Tutorials</p></a>
+</div>
+<br></br>
+<center>
+
+<h1>Send</h1>
+<p>Send a message to me</p>
+<input id="title" placeholder="Title/Name of message"><input id="username" placeholder="Username (not your real name)"><br><br>
+<textarea id="message" style="
+	height: 224px;
+    width: 381px;" placeholder='Write Something here,
+other pepole will see this message, including Gvbvdxx!
+make your message nice to others, stay safe! "dont share passwords".'></textarea><br>
+<button onclick="send()" id="send"></button>
+<h1>Messages:</h1>
+<div id="messages">
+
+</div>
+<xml hidden id="messageTemplate">
+<input><input ><br><br><textarea style="height: 224px;width: 381px;">Message</textarea><br>
+</xml>
+<hr style="">
+<p>Gvbvdxx Game Maker 2</p>
+<p style="font-size:12px;">©Gvbvdxx (2021)</p>
+
+</center>
+<script src="servers.js?n=1">
+</script>
+<script>
+window.isHome = true;
+var currentMessages = {}; 
+function reloadmsg(cb) {
+	document.getElementById("messages").innerHTML = "Loading...";
+	servers.readFile("ggm-gvbvdxx-messages.json",function (data){
+		document.getElementById("messages").innerHTML = "";
+		if (data) {
+			currentMessages = JSON.parse(data);
+			var index = 0;
+			var json = JSON.parse(data);
+			while (index < json.messages.length) {
+				var div = document.createElement("div");
+				div.innerHTML = '<input disabled><input disabled><br><br><textarea style="resize:none;height:224px;width:381px;" disabled>Message</textarea><p>Reply To Above</p><br>';
+				div.children[0].value = json.messages[index].title;
+				div.children[1].value = json.messages[index].username;
+				div.children[4].value = json.messages[index].message;
+				div.children[4].style.width = json.messages[index].width;
+				div.children[4].style.height = json.messages[index].height;
+				//reply
+				div.children[5].style.color = "blue";
+				div.children[5].style.textDecoration = "underline";
+				div.children[5].style.cursor = "pointer";
+				div.children[5].onclick = function () {
+					window.scrollTo(0,0);
+					document.getElementById("title").value = div.children[0].value + " - Reply";
+					document.getElementById("message").value = "{\nReply To "+div.children[0].value+":\n"+div.children[4].value+"\n}\n";
+					document.getElementById("message").focus();
+				}
+				document.getElementById("messages").appendChild(div);
+				index += 1;
+			}
+			if (json.messages.length < 1) {
+				document.getElementById("messages").innerHTML = "There Are No Messages!";
+			}
+			if(cb){
+				cb();
+			}
+		}
+	});
+}
+reloadmsg();
+document.getElementById("send").innerHTML = "Send";
+function send() {
+	document.getElementById("send").innerHTML = "Sending...";
+	servers.readFile("ggm-gvbvdxx-messages.json",function (data){
+		if (data) {
+			currentMessages = JSON.parse(data);
+			currentMessages.messages.push({
+				message:document.getElementById("message").value,
+				username:document.getElementById("username").value,
+				title:document.getElementById("title").value,
+				width:document.getElementById("message").style.width,
+				height:document.getElementById("message").style.height
+			})
+			servers.saveFile("ggm-gvbvdxx-messages.json",JSON.stringify(currentMessages),function (data){
+				console.log("saved message");
+				document.getElementById("send").innerHTML = "Send";
+				reloadmsg(function () {
+					window.scrollTo(99999999999999999999999999999999,9999999999999999999999999999999999);
+				});
+			});
+		}
+	});
+}
+</script>
+<script src="info.js?n=1"></script>
+<script src="accountbar.js?n=1"></script>
+</body>
+</html>

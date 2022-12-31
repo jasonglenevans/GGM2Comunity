@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+
+
+
+
+
+</head>
+<body>
+
+
+<h1>GGM2 player libary for simple pepole</h1>
+<p>this is a way to add GGM2 projects to your JS programs.</p>
+<a href="libary.min.js" download>download the libary (minified)</a><br>
+<a href="ezLib.js" download>download the libary (not minified)</a><br>
+<textarea style="width: 733px; height: 133px;">
+<!--add ?n=1 to the srcs if you want auto update the libary and the vm.-->
+<script src="path/to/vm/compressed.js?n=1"></script>
+<script src="path/to/player/libary.js?n=1"></script>
+<script>
+var ggm2Frame = new GGM2Intergration("path/to/game/file");
+document.body.appendChild(ggm2Frame.DIV); //DIV is the element for the GGM2Intergration object.
+</script>
+</textarea><br>
+<p>notice: it will only work if hosted on a webpage.</p>
+<p>only one viewer can be opened because of the ggm2 limintations.</p>
+<br>
+<br>
+<b>Demo:</b>
+<input type="file" id="fileSelect" accept=".ggm2g">
+
+<script src="../ggm-vm/compressed.js"></script>
+<script src="libary.min.js"></script>
+<script>
+var ggm2Frame = new GGM2Intergration("./example.ggm2g");
+document.body.appendChild(ggm2Frame.DIV);
+var select = document.getElementById("fileSelect");
+select.onchange = function () {
+	if (select.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = function () {
+			ggm2Frame.loadContentRAWJSON(reader.result);
+		};
+		
+		reader.readAsText(select.files[0]);
+		select.value = "";
+	}
+};
+</script>
+</body>
+</html>
